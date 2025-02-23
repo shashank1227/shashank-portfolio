@@ -6,6 +6,7 @@ import { FaLinkedin, FaGithub } from 'react-icons/fa';
 const ContactSection = styled.section`
   background: ${({ theme }) => theme.colors.card};
   padding: ${({ theme }) => theme.spacing.xl} 0;
+  scroll-margin-top: 2rem;
 `;
 
 const Container = styled.div`
@@ -171,7 +172,7 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <ContactSection>
+    <ContactSection id="contact">
       <Container>
         <Title
           initial={{ opacity: 0, y: 20 }}

@@ -66,6 +66,13 @@ const CTAButton = styled(motion.button)`
 `;
 
 const Hero: React.FC = () => {
+  const handleContactClick = () => {
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <HeroSection>
       <HeroContent>
@@ -91,6 +98,7 @@ const Hero: React.FC = () => {
           Frontend Developer
         </Subtitle>
         <CTAButton
+          onClick={handleContactClick}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.6 }}
