@@ -258,7 +258,7 @@ const Contact: React.FC = () => {
                 <FaLinkedin />
               </SocialLink>
               <SocialLink
-                href="https://github.com/shashanksingh1227"
+                href="https://github.com/shashank1227"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ y: -5 }}
