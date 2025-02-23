@@ -70,7 +70,7 @@ const Hero: React.FC = () => {
     <HeroSection>
       <HeroContent>
         <ProfileImage
-          src="/profile.jpg"
+          src={process.env.PUBLIC_URL + '/profile.jpg'}
           alt="Shashank Shekhar Singh"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
