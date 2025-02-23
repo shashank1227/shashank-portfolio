@@ -1,6 +1,6 @@
 import React from 'react';
-import styled, { ThemeProvider } from 'styled-components';
-import { motion } from 'framer-motion';
+import { ThemeProvider } from 'styled-components';
+import styled from 'styled-components';
 import Hero from './components/Hero';
 import About from './components/About';
 import Experience from './components/Experience';

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { FaLinkedin, FaGithub } from 'react-icons/fa';
 
 const ContactSection = styled.section`
   background: ${({ theme }) => theme.colors.card};
@@ -96,21 +95,6 @@ const ContactText = styled.p`
   font-size: 1.1rem;
   line-height: 1.6;
   margin-bottom: ${({ theme }) => theme.spacing.md};
-`;
-
-const SocialLinks = styled.div`
-  display: flex;
-  gap: ${({ theme }) => theme.spacing.md};
-`;
-
-const SocialLink = styled(motion.a)`
-  color: ${({ theme }) => theme.colors.text};
-  font-size: 2rem;
-  transition: color 0.3s ease;
-
-  &:hover {
-    color: ${({ theme }) => theme.colors.primary};
-  }
 `;
 
 const ThankYouMessage = styled(motion.div)`
@@ -249,24 +233,6 @@ const Contact: React.FC = () => {
               Whether you have a question or just want to say hi, I'll try my best
               to get back to you!
             </ContactText>
-            <SocialLinks>
-              <SocialLink
-                href="https://linkedin.com/in/shashesi/"
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ y: -5 }}
-              >
-                <FaLinkedin />
-              </SocialLink>
-              <SocialLink
-                href="https://github.com/shashank1227"
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ y: -5 }}
-              >
-                <FaGithub />
-              </SocialLink>
-            </SocialLinks>
           </ContactInfo>
         </ContactContent>
       </Container>
