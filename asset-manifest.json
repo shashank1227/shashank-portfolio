@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/shashank-portfolio/static/js/main.9b804849.js",
+    "main.js": "/shashank-portfolio/static/js/main.df82b204.js",
     "index.html": "/shashank-portfolio/index.html",
-    "main.9b804849.js.map": "/shashank-portfolio/static/js/main.9b804849.js.map"
+    "main.df82b204.js.map": "/shashank-portfolio/static/js/main.df82b204.js.map"
   },
   "entrypoints": [
-    "static/js/main.9b804849.js"
+    "static/js/main.df82b204.js"
   ]
 }
