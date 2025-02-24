@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
+import { FaDownload } from 'react-icons/fa';
 
 const HeroSection = styled.section`
   min-height: 100vh;
@@ -8,6 +9,7 @@ const HeroSection = styled.section`
   align-items: center;
   position: relative;
   overflow: hidden;
+  justify-content: flex-start;
 
   &::before {
     content: '';
@@ -27,6 +29,7 @@ const HeroContent = styled.div`
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 ${({ theme }) => theme.spacing.md};
+  text-align: left;
 `;
 
 const ProfileImage = styled(motion.img)`
@@ -35,6 +38,7 @@ const ProfileImage = styled(motion.img)`
   border-radius: 50%;
   border: 4px solid ${({ theme }) => theme.colors.primary};
   margin-bottom: ${({ theme }) => theme.spacing.md};
+  display: block;
 `;
 
 const Title = styled(motion.h1)`
@@ -55,13 +59,51 @@ const CTAButton = styled(motion.button)`
   padding: ${({ theme }) => theme.spacing.sm} ${({ theme }) => theme.spacing.md};
   background: ${({ theme }) => theme.colors.gradient};
   color: ${({ theme }) => theme.colors.background};
+  border: none;
   border-radius: 30px;
   font-weight: 600;
+  cursor: pointer;
   font-size: 1.2rem;
-  transition: transform 0.3s ease;
+  transition: box-shadow 0.2s ease;
+  outline: none;
 
-  &:hover {
-    transform: scale(1.05);
+  &:hover, &:focus {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 255, 157, 0.3);
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 3px rgba(0, 255, 157, 0.3);
+  }
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  gap: ${({ theme }) => theme.spacing.md};
+`;
+
+const DownloadButton = styled(motion.a)`
+  padding: ${({ theme }) => theme.spacing.sm} ${({ theme }) => theme.spacing.md};
+  background: transparent;
+  color: ${({ theme }) => theme.colors.primary};
+  border: 2px solid ${({ theme }) => theme.colors.primary};
+  border-radius: 30px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 1.2rem;
+  display: inline-flex;
+  align-items: center;
+  gap: ${({ theme }) => theme.spacing.xs};
+  text-decoration: none;
+  transition: box-shadow 0.2s ease;
+  outline: none;
+
+  &:focus {
+    box-shadow: 0 0 0 3px rgba(0, 255, 157, 0.3);
+  }
+  
+  svg {
+    font-size: 1rem;
   }
 `;
 
@@ -97,16 +139,46 @@ const Hero: React.FC = () => {
         >
           Frontend Developer
         </Subtitle>
-        <CTAButton
-          onClick={handleContactClick}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          Get in Touch
-        </CTAButton>
+        <ButtonContainer>
+          <CTAButton
+            as={motion.button}
+            onClick={handleContactClick}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ 
+              duration: 0.6, 
+              delay: 0.6,
+              scale: {
+                type: "spring",
+                stiffness: 400,
+                damping: 10
+              }
+            }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            Get in Touch
+          </CTAButton>
+          <DownloadButton
+            href="/ShashankResume.pdf"
+            download="Shashank-Resume.pdf"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ 
+              duration: 0.6, 
+              delay: 0.7,
+              scale: {
+                type: "spring",
+                stiffness: 400,
+                damping: 10
+              }
+            }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <FaDownload /> Download Resume
+          </DownloadButton>
+        </ButtonContainer>
       </HeroContent>
     </HeroSection>
   );

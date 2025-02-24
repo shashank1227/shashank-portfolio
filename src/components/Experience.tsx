@@ -70,6 +70,14 @@ const TimelineContent = styled(motion.div)`
   width: 90%;
   position: relative;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    border-color: ${({ theme }) => theme.colors.primary};
+    box-shadow: 0 8px 30px rgba(0, 255, 157, 0.1);
+  }
 
   &::before {
     content: '';
@@ -80,6 +88,12 @@ const TimelineContent = styled(motion.div)`
     height: 20px;
     background: ${({ theme }) => theme.colors.primary};
     border-radius: 50%;
+    transition: all 0.3s ease;
+  }
+
+  &:hover::before {
+    transform: translateY(-50%) scale(1.2);
+    box-shadow: 0 0 15px rgba(0, 255, 157, 0.5);
   }
 
   ${TimelineItem}:nth-child(odd) & {
@@ -107,6 +121,11 @@ const Role = styled.h3`
   font-size: 1.5rem;
   color: ${({ theme }) => theme.colors.accent};
   margin-bottom: ${({ theme }) => theme.spacing.xs};
+  transition: color 0.3s ease;
+
+  ${TimelineContent}:hover & {
+    color: ${({ theme }) => theme.colors.primary};
+  }
 `;
 
 const Company = styled.h4`
