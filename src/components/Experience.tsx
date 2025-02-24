@@ -148,7 +148,7 @@ const Experience: React.FC = () => {
             <TimelineContent>
               <Role>Senior Frontend Developer</Role>
               <Company>Eclerx Services Limited</Company>
-              <Duration>2021 - Present</Duration>
+              <Duration>2023 - Present</Duration>
               <ul>
                 <Achievement>Led the development of customer-facing applications, resulting in a 30% increase in user engagement</Achievement>
                 <Achievement>Implemented automated testing and CI/CD pipelines, reducing deployment time by 50%</Achievement>
@@ -165,11 +165,28 @@ const Experience: React.FC = () => {
             <TimelineContent>
               <Role>Frontend Developer</Role>
               <Company>Eclerx Services Limited</Company>
-              <Duration>2019 - 2021</Duration>
+              <Duration>2021 - 2023</Duration>
               <ul>
                 <Achievement>Developed and maintained multiple client-facing web applications using React and TypeScript</Achievement>
                 <Achievement>Automated manual processes, reducing workload by 40% through innovative solutions</Achievement>
                 <Achievement>Collaborated with cross-functional teams to deliver projects on time and within budget</Achievement>
+              </ul>
+            </TimelineContent>
+          </TimelineItem>
+
+          <TimelineItem
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+          >
+            <TimelineContent>
+              <Role>Web Developer Intern</Role>
+              <Company>Eclerx Services Limited</Company>
+              <Duration>2020 - 2021</Duration>
+              <ul>
+                <Achievement>Developed and optimized 10+ responsive web pages, improving load time by 20% using HTML, CSS, JavaScript, and ReactJS</Achievement>
+                <Achievement>Collaborated with a team of 4 developers and designers, resolving 90% of reported UI bugs and implementing new features</Achievement>
+                <Achievement>Learning best practices in web development</Achievement>
               </ul>
             </TimelineContent>
           </TimelineItem>

@@ -71,9 +71,9 @@ const AchievementTitle = styled(CertificationTitle)`
 
 const certifications = [
   {
-    title: 'Advanced Frontend Development',
+    title: 'Full Stack Development',
     issuer: 'upGrad',
-    date: '2023'
+    date: '2020'
   },
   {
     title: 'React & TypeScript Masterclass',
