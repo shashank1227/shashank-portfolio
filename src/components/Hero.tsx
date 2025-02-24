@@ -27,9 +27,15 @@ const HeroContent = styled.div`
   position: relative;
   z-index: 1;
   max-width: 1200px;
+  width: 100%;
   margin: 0 auto;
   padding: 0 ${({ theme }) => theme.spacing.md};
   text-align: left;
+  box-sizing: border-box;
+
+  @media (max-width: 480px) {
+    padding: 0 ${({ theme }) => theme.spacing.sm};
+  }
 `;
 
 const ProfileImage = styled(motion.img)`
@@ -47,6 +53,11 @@ const Title = styled(motion.h1)`
   background: ${({ theme }) => theme.colors.gradient};
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  word-break: break-word;
+  
+  @media (max-width: 480px) {
+    font-size: 2.5rem;
+  }
 `;
 
 const Subtitle = styled(motion.h2)`
@@ -77,11 +88,6 @@ const CTAButton = styled(motion.button)`
   }
 `;
 
-const ButtonContainer = styled.div`
-  display: flex;
-  gap: ${({ theme }) => theme.spacing.md};
-`;
-
 const DownloadButton = styled(motion.a)`
   padding: ${({ theme }) => theme.spacing.sm} ${({ theme }) => theme.spacing.md};
   background: transparent;
@@ -104,6 +110,27 @@ const DownloadButton = styled(motion.a)`
   
   svg {
     font-size: 1rem;
+  }
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  gap: ${({ theme }) => theme.spacing.md};
+  max-width: 100%;
+  box-sizing: border-box;
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+    width: 100%;
+    padding: 0 ${({ theme }) => theme.spacing.xs};
+
+    ${CTAButton}, ${DownloadButton} {
+      width: 100%;
+      justify-content: center;
+      box-sizing: border-box;
+      white-space: nowrap;
+      min-width: 0;
+    }
   }
 `;
 
