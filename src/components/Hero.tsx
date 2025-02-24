@@ -160,7 +160,7 @@ const Hero: React.FC = () => {
             Get in Touch
           </CTAButton>
           <DownloadButton
-            href="/ShashankResume.pdf"
+            href={`${process.env.PUBLIC_URL}/ShashankResume.pdf`}
             download="Shashank-Resume.pdf"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
