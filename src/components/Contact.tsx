@@ -191,6 +191,7 @@ const Contact: React.FC = () => {
                   value={formData.name}
                   onChange={handleChange}
                   required
+                  autoComplete="name"
                 />
                 <Input
                   type="email"
@@ -199,6 +200,7 @@ const Contact: React.FC = () => {
                   value={formData.email}
                   onChange={handleChange}
                   required
+                  autoComplete="email"
                 />
                 <TextArea
                   name="message"
@@ -206,6 +208,7 @@ const Contact: React.FC = () => {
                   value={formData.message}
                   onChange={handleChange}
                   required
+                  autoComplete="off"
                 />
                 <SubmitButton
                   type="submit"
