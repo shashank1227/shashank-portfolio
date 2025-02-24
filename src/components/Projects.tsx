@@ -11,12 +11,20 @@ const ProjectsSection = styled.section`
   padding: ${({ theme }) => theme.spacing.xl} 0;
   position: relative;
   overflow: hidden;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    padding: ${({ theme }) => theme.spacing.lg} 0;
+  }
 `;
 
 const Container = styled.div`
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 ${({ theme }) => theme.spacing.md};
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    padding: 0 ${({ theme }) => theme.spacing.sm};
+  }
 `;
 
 const Title = styled(motion.h2)`
@@ -35,6 +43,7 @@ const StyledSlider = styled(Slider)`
     height: inherit;
     > div {
       height: 100%;
+      padding: 0 ${({ theme }) => theme.spacing.xs};
     }
   }
 
@@ -47,6 +56,12 @@ const StyledSlider = styled(Slider)`
       color: ${({ theme }) => theme.colors.primary};
     }
   }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    .slick-arrow {
+      display: none !important;
+    }
+  }
 `;
 
 const ProjectCard = styled(motion.div)`
@@ -55,8 +70,14 @@ const ProjectCard = styled(motion.div)`
   overflow: hidden;
   height: 100%;
   padding: ${({ theme }) => theme.spacing.md};
+  margin: 0 ${({ theme }) => theme.spacing.xs};
   border: 1px solid rgba(255, 255, 255, 0.1);
   transition: all 0.3s ease;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    margin: 0;
+    padding: ${({ theme }) => theme.spacing.sm};
+  }
 
   &:hover {
     transform: translateY(-10px);
@@ -102,22 +123,33 @@ const ArrowButton = styled.button<{ direction: 'left' | 'right' }>`
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  ${({ direction }) => direction === 'left' ? 'left: -30px;' : 'right: -30px;'}
-  background: transparent;
-  border: none;
+  ${({ direction }) => direction === 'left' ? 'left: -50px;' : 'right: -50px;'}
+  background: ${({ theme }) => theme.colors.background};
+  border: 1px solid ${({ theme }) => theme.colors.primary};
   color: ${({ theme }) => theme.colors.primary};
-  font-size: 1.2rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   z-index: 1;
   opacity: 0.7;
-  transition: opacity 0.3s ease;
+  transition: all 0.3s ease;
 
   &:hover {
     opacity: 1;
+    background: ${({ theme }) => theme.colors.primary};
+    color: ${({ theme }) => theme.colors.background};
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    ${({ direction }) => direction === 'left' ? 'left: 5px;' : 'right: 5px;'}
+    ${({ direction }) => direction === 'left' ? 'left: 10px;' : 'right: 10px;'}
+    width: 32px;
+    height: 32px;
+    background: ${({ theme }) => theme.colors.background};
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   }
 `;
 
@@ -173,17 +205,27 @@ const Projects: React.FC = () => {
     pauseOnHover: true,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
+    swipeToSlide: true,
+    touchThreshold: 10,
     responsive: [
       {
         breakpoint: 1024,
         settings: {
           slidesToShow: 2,
+          arrows: false,
+          dots: true,
+          swipeToSlide: true
         }
       },
       {
         breakpoint: 600,
         settings: {
           slidesToShow: 1,
+          arrows: false,
+          dots: true,
+          swipeToSlide: true,
+          centerMode: true,
+          centerPadding: '20px'
         }
       }
     ]
