@@ -52,24 +52,26 @@ const Footer: React.FC = () => {
     <FooterSection>
       <FooterContent>
         <Copyright>
-          © {currentYear} Shashank Shekhar Singh. All rights reserved.
+          {currentYear} Shashank Shekhar Singh. All rights reserved.
         </Copyright>
         <SocialLinks>
           <SocialLink
             href="https://linkedin.com/in/shashesi/"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Visit Shashank's LinkedIn profile"
             whileHover={{ y: -3 }}
           >
-            <FaLinkedin />
+            <FaLinkedin aria-label="LinkedIn icon" />
           </SocialLink>
           <SocialLink
             href="https://github.com/shashank1227"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Visit Shashank's GitHub profile"
             whileHover={{ y: -3 }}
           >
-            <FaGithub />
+            <FaGithub aria-label="GitHub icon" />
           </SocialLink>
         </SocialLinks>
       </FooterContent>

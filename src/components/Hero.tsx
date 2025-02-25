@@ -170,6 +170,7 @@ const Hero: React.FC = () => {
           <CTAButton
             as={motion.button}
             onClick={handleContactClick}
+            aria-label="Get in Touch with Shashank"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ 
@@ -189,6 +190,7 @@ const Hero: React.FC = () => {
           <DownloadButton
             href={`${process.env.PUBLIC_URL}/ShashankResume.pdf`}
             download="Shashank-Resume.pdf"
+            aria-label="Download Shashank's Resume"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ 

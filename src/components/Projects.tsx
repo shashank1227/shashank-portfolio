@@ -182,13 +182,13 @@ const projects = [
 ];
 
 const NextArrow = (props: any) => (
-  <ArrowButton direction="right" onClick={props.onClick}>
+  <ArrowButton direction="right" onClick={props.onClick} aria-label="Next Project">
     <FaChevronRight />
   </ArrowButton>
 );
 
 const PrevArrow = (props: any) => (
-  <ArrowButton direction="left" onClick={props.onClick}>
+  <ArrowButton direction="left" onClick={props.onClick} aria-label="Previous Project">
     <FaChevronLeft />
   </ArrowButton>
 );
