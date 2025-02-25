@@ -10,6 +10,8 @@ A modern, responsive portfolio website built with React, TypeScript, and Styled 
 - Sections for About, Experience, Projects, Certifications, and Contact
 - Contact form with social media links
 - Optimized performance and accessibility
+- Project carousel using React Slick
+- Downloadable resume in PDF format
 
 ## Tech Stack
 
@@ -18,12 +20,14 @@ A modern, responsive portfolio website built with React, TypeScript, and Styled 
 - Styled Components
 - Framer Motion
 - React Icons
+- React Slick for carousels
+- GitHub Pages for deployment
 
 ## Getting Started
 
 1. Clone the repository:
 ```bash
-git clone <repository-url>
+git clone https://github.com/shashank1227/shashank-portfolio.git
 ```
 
 2. Install dependencies:
@@ -42,31 +46,61 @@ npm start
 npm run build
 ```
 
+5. Deploy to GitHub Pages:
+```bash
+npm run deploy
+```
+
 ## Project Structure
 
 ```
-src/
-  ├── components/         # React components
-  │   ├── Hero.tsx
-  │   ├── About.tsx
-  │   ├── Experience.tsx
-  │   ├── Projects.tsx
-  │   ├── Certifications.tsx
-  │   └── Contact.tsx
-  ├── styles/            # Global styles and theme
-  │   ├── GlobalStyle.ts
-  │   └── theme.ts
-  ├── App.tsx           # Main App component
-  └── index.tsx         # Entry point
+shashank-portfolio/
+├── public/              # Public assets and HTML template
+│   ├── ShashankResume.pdf
+│   └── index.html
+├── src/
+│   ├── components/     # React components
+│   │   ├── Hero.tsx
+│   │   ├── About.tsx
+│   │   ├── Experience.tsx
+│   │   ├── Projects.tsx
+│   │   ├── Certifications.tsx
+│   │   └── Contact.tsx
+│   ├── styles/        # Styled components and global styles
+│   │   ├── GlobalStyle.ts
+│   │   └── theme.ts
+│   ├── App.tsx        # Main application component
+│   └── index.tsx      # Application entry point
+├── package.json       # Project dependencies and scripts
+└── tsconfig.json     # TypeScript configuration
 ```
 
-## Customization
+## Scripts
 
-- Update the content in each component to reflect your personal information
-- Modify the theme colors in `src/styles/theme.ts`
-- Add or remove sections as needed
-- Customize animations and transitions
+- `npm start`: Runs the app in development mode
+- `npm run build`: Builds the app for production
+- `npm run test`: Runs the test suite
+- `npm run deploy`: Deploys the app to GitHub Pages
+
+## Deployment
+
+The portfolio is deployed using GitHub Pages. The deployment process is automated using the `gh-pages` package. To deploy updates:
+
+1. Make your changes
+2. Commit and push to the main branch
+3. Run `npm run deploy`
+
+## Browser Support
+
+The portfolio is optimized for:
+- Latest versions of Chrome, Firefox, and Safari
+- Edge
+- Mobile browsers
 
 ## License
 
-MIT License
+ISC License
+
+## Author
+
+Shashank
