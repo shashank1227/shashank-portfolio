@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { FaDownload } from 'react-icons/fa';
+import TypedText from './TypedText';
 
 const HeroSection = styled.section`
   min-height: 100vh;
@@ -143,7 +144,7 @@ const Hero: React.FC = () => {
   };
 
   return (
-    <HeroSection>
+    <HeroSection id="hero">
       <HeroContent>
         <ProfileImage
           src={process.env.PUBLIC_URL + '/profile.jpg'}
@@ -164,7 +165,18 @@ const Hero: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
-          Frontend Developer
+          <TypedText 
+            strings={[
+              'Frontend Developer',
+              'Associate Process Manager at eClerx'
+            ]}
+            typeSpeed={50}
+            backSpeed={30}
+            loop
+            backDelay={1500}
+            smartBackspace
+            className="text-primary"
+          />
         </Subtitle>
         <ButtonContainer>
           <CTAButton
