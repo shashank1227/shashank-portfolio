@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
 const ContactSection = styled.section`
-  background: ${({ theme }) => theme.colors.card};
+  background: ${({ theme }) => theme.colors.background};
   padding: ${({ theme }) => theme.spacing.xl} 0;
   scroll-margin-top: 2rem;
 `;
@@ -41,7 +41,7 @@ const ContactForm = styled(motion.form)`
 
 const Input = styled.input`
   padding: ${({ theme }) => theme.spacing.sm};
-  background: ${({ theme }) => theme.colors.background};
+  background: ${({ theme }) => theme.colors.cardDarker};
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 8px;
   color: ${({ theme }) => theme.colors.text};
@@ -55,7 +55,7 @@ const Input = styled.input`
 
 const TextArea = styled.textarea`
   padding: ${({ theme }) => theme.spacing.sm};
-  background: ${({ theme }) => theme.colors.background};
+  background: ${({ theme }) => theme.colors.cardDarker};
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 8px;
   color: ${({ theme }) => theme.colors.text};

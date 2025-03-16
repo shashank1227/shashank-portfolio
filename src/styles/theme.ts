@@ -6,6 +6,7 @@ export const theme = {
     secondary: '#ff00ff',
     accent: '#00ffff',
     card: '#1a1a1a',
+    cardDarker: '#000',
     gradient: 'linear-gradient(135deg, #00ff9d 0%, #00ffff 100%)',
   },
   fonts: {

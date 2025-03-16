@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 
 const FooterSection = styled.footer`
-  background: ${({ theme }) => theme.colors.card};
+  background: ${({ theme }) => theme.colors.background};
   padding: ${({ theme }) => theme.spacing.md} 0;
   margin-top: auto;
 `;

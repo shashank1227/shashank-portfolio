@@ -5,9 +5,11 @@ import Hero from './components/Hero';
 import About from './components/About';
 import Experience from './components/Experience';
 import Projects from './components/Projects';
+import Testimonials from './components/Testimonials';
 import Certifications from './components/Certifications';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import ResumeQRCode from './components/ResumeQRCode';
 import GlobalStyle from './styles/GlobalStyle';
 import { theme } from './styles/theme';
 import { initGA, logPageView } from './utils/analytics';
@@ -34,9 +36,11 @@ const App: React.FC = () => {
         <About />
         <Experience />
         <Projects />
+        <Testimonials />
         <Certifications />
         <Contact />
         <Footer />
+        <ResumeQRCode />
       </AppContainer>
     </ThemeProvider>
   );

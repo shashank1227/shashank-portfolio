@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 
 const CertificationsSection = styled.section`
   padding: ${({ theme }) => theme.spacing.xl} 0;
+  background: ${({ theme }) => theme.colors.card};
 `;
 
 const Container = styled.div`
@@ -25,7 +26,7 @@ const CertificationsGrid = styled.div`
 `;
 
 const CertificationCard = styled(motion.div)`
-  background: ${({ theme }) => theme.colors.card};
+  background: ${({ theme }) => theme.colors.background};
   border-radius: 12px;
   padding: ${({ theme }) => theme.spacing.md};
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
