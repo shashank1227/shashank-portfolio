@@ -69,7 +69,7 @@ const StyledSlider = styled(Slider)`
   }
 `;
 
-const TestimonialCard = styled.div`
+const TestimonialCard = styled(motion.div)`
   background: ${({ theme }) => theme.colors.card};
   border-radius: 10px;
   padding: ${({ theme }) => theme.spacing.lg};
@@ -82,6 +82,13 @@ const TestimonialCard = styled.div`
   max-height: 70vh;
   overflow-y: auto;
   box-sizing: border-box;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-10px);
+    border-color: ${({ theme }) => theme.colors.primary};
+    box-shadow: 0 10px 30px rgba(0, 255, 157, 0.2);
+  }
 
   /* Custom scrollbar */
   &::-webkit-scrollbar {
@@ -266,7 +273,13 @@ const Testimonials: React.FC = () => {
         <StyledSlider {...settings}>
           {testimonials.map((testimonial) => (
             <div key={testimonial.id}>
-              <TestimonialCard>
+              <TestimonialCard
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -10 }}
+              >
                 <QuoteIcon>"</QuoteIcon>
                 <TestimonialText>
                   {formatTestimonialText(testimonial.text)}
