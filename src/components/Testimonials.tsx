@@ -130,7 +130,7 @@ const QuoteIcon = styled.span`
   &::before {
     content: "\\201C"; /* Unicode for opening double quote */
     position: absolute;
-    top: 0;
+    top: 30px;
     left: 0;
   }
 `;
