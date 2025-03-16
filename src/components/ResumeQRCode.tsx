@@ -123,22 +123,11 @@ const IconButton = styled.button`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: bold;
   padding: 0;
-  line-height: 1;
   
-  /* Better centering for the × character */
-  &::before {
-    content: "×";
-    display: block;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    line-height: 0;
-    text-align: center;
-  }
+  /* Simple approach - no pseudo-elements */
   
   &:hover {
     background: ${({ theme }) => theme.colors.primary};
@@ -148,7 +137,7 @@ const IconButton = styled.button`
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
     width: 20px;
     height: 20px;
-    font-size: 14px;
+    font-size: 12px;
     top: -6px;
     right: -6px;
   }
@@ -278,7 +267,7 @@ const ResumeQRCode: React.FC = () => {
       {isVisible && !mobile && (
         <QRCodeContainer {...animationProps}>
           <GlowEffect />
-          <IconButton onClick={handleDismiss} aria-label="Close resume QR code" />
+          <IconButton onClick={handleDismiss} aria-label="Close resume QR code">×</IconButton>
           <QRTitle>Scan for Resume</QRTitle>
           <QRCodeWrapper>
             <QRCodeSVG 
