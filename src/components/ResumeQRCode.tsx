@@ -123,16 +123,21 @@ const IconButton = styled.button`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  font-size: 12px;
+  font-size: 16px;
   font-weight: bold;
   padding: 0;
   line-height: 1;
   
-  /* Center the × character properly */
+  /* Better centering for the × character */
   &::before {
     content: "×";
     display: block;
-    transform: translateY(-1px);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    line-height: 0;
+    text-align: center;
   }
   
   &:hover {
@@ -143,7 +148,7 @@ const IconButton = styled.button`
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
     width: 20px;
     height: 20px;
-    font-size: 10px;
+    font-size: 14px;
     top: -6px;
     right: -6px;
   }
