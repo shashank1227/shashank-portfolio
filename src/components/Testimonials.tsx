@@ -114,10 +114,25 @@ const TestimonialCard = styled(motion.div)`
 `;
 
 const QuoteIcon = styled.span`
-  font-size: 3rem;
+  font-size: 5rem;
   color: ${({ theme }) => theme.colors.primary};
-  opacity: 0.5;
-  margin-bottom: ${({ theme }) => theme.spacing.xs};
+  opacity: 0.2;
+  margin-bottom: ${({ theme }) => theme.spacing.md};
+  margin-left: -8px;
+  font-family: 'Georgia', serif;
+  position: relative;
+  line-height: 0;
+  height: 50px;
+  display: block;
+  transform: translateY(-15px);
+  text-shadow: 2px 2px 15px rgba(0, 255, 157, 0.3);
+  
+  &::before {
+    content: "\\201C"; /* Unicode for opening double quote */
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
 `;
 
 const TestimonialText = styled.div`
@@ -278,7 +293,7 @@ const Testimonials: React.FC = () => {
                 transition={{ duration: 0.5 }}
                 viewport={{ once: true }}
               >
-                <QuoteIcon>"</QuoteIcon>
+                <QuoteIcon />
                 <TestimonialText>
                   {formatTestimonialText(testimonial.text)}
                 </TestimonialText>
