@@ -10,15 +10,6 @@ const isMobile = () => {
   return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
 };
 
-// Debounce function to limit execution frequency
-const debounce = (fn: Function, ms = 100) => {
-  let timeoutId: ReturnType<typeof setTimeout>;
-  return function(...args: any[]) {
-    clearTimeout(timeoutId);
-    timeoutId = setTimeout(() => fn(...args), ms);
-  };
-};
-
 const QRCodeContainer = styled(motion.div)`
   position: fixed;
   bottom: 20px;
@@ -123,11 +114,17 @@ const IconButton = styled.button`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: bold;
   padding: 0;
+  line-height: 1;
   
-  /* Simple approach - no pseudo-elements */
+  /* Center the × character properly */
+  &::before {
+    content: "×";
+    display: block;
+    transform: translateY(-1px);
+  }
   
   &:hover {
     background: ${({ theme }) => theme.colors.primary};
@@ -137,7 +134,7 @@ const IconButton = styled.button`
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
     width: 20px;
     height: 20px;
-    font-size: 12px;
+    font-size: 10px;
     top: -6px;
     right: -6px;
   }
@@ -267,7 +264,7 @@ const ResumeQRCode: React.FC = () => {
       {isVisible && !mobile && (
         <QRCodeContainer {...animationProps}>
           <GlowEffect />
-          <IconButton onClick={handleDismiss} aria-label="Close resume QR code">×</IconButton>
+          <IconButton onClick={handleDismiss} aria-label="Close resume QR code" />
           <QRTitle>Scan for Resume</QRTitle>
           <QRCodeWrapper>
             <QRCodeSVG 
