@@ -85,9 +85,8 @@ const TestimonialCard = styled(motion.div)`
   transition: all 0.3s ease;
 
   &:hover {
-    transform: translateY(-10px);
     border-color: ${({ theme }) => theme.colors.primary};
-    box-shadow: 0 10px 30px rgba(0, 255, 157, 0.2);
+    box-shadow: 0 10px 30px rgba(0, 255, 157, 0.3);
   }
 
   /* Custom scrollbar */
@@ -278,7 +277,6 @@ const Testimonials: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
                 viewport={{ once: true }}
-                whileHover={{ y: -10 }}
               >
                 <QuoteIcon>"</QuoteIcon>
                 <TestimonialText>
