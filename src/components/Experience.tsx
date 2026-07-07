@@ -20,7 +20,7 @@ const Title = styled(motion.h2)`
 
 const Timeline = styled.div`
   position: relative;
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
 
   &::before {
@@ -66,17 +66,17 @@ const TimelineItem = styled(motion.div)`
 const TimelineContent = styled(motion.div)`
   background: ${({ theme }) => theme.colors.card};
   padding: ${({ theme }) => theme.spacing.md};
-  border-radius: 8px;
+  border-radius: 12px;
   width: 90%;
   position: relative;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   transition: all 0.3s ease;
 
   &:hover {
     transform: translateY(-5px);
     border-color: ${({ theme }) => theme.colors.primary};
-    box-shadow: 0 8px 30px rgba(0, 255, 157, 0.1);
+    box-shadow: 0 8px 30px rgba(0, 255, 157, 0.12);
   }
 
   &::before {
@@ -84,27 +84,21 @@ const TimelineContent = styled(motion.div)`
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
     background: ${({ theme }) => theme.colors.primary};
     border-radius: 50%;
-    transition: all 0.3s ease;
-  }
-
-  &:hover::before {
-    transform: translateY(-50%) scale(1.2);
-    box-shadow: 0 0 15px rgba(0, 255, 157, 0.5);
   }
 
   ${TimelineItem}:nth-child(odd) & {
     &::before {
-      right: -60px;
+      right: -58px;
     }
   }
 
   ${TimelineItem}:nth-child(even) & {
     &::before {
-      left: -60px;
+      left: -58px;
     }
   }
 
@@ -118,38 +112,79 @@ const TimelineContent = styled(motion.div)`
 `;
 
 const Role = styled.h3`
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   color: ${({ theme }) => theme.colors.accent};
   margin-bottom: ${({ theme }) => theme.spacing.xs};
-  transition: color 0.3s ease;
-
-  ${TimelineContent}:hover & {
-    color: ${({ theme }) => theme.colors.primary};
-  }
 `;
 
 const Company = styled.h4`
-  font-size: 1.2rem;
+  font-size: 1.05rem;
   color: ${({ theme }) => theme.colors.secondary};
+  margin-bottom: ${({ theme }) => theme.spacing.xs};
+`;
+
+const Location = styled.p`
+  font-size: 0.95rem;
+  color: ${({ theme }) => theme.colors.text};
+  opacity: 0.8;
   margin-bottom: ${({ theme }) => theme.spacing.sm};
 `;
 
 const Duration = styled.p`
-  font-size: 1rem;
+  font-size: 0.95rem;
   color: ${({ theme }) => theme.colors.text};
-  opacity: 0.8;
+  opacity: 0.85;
   margin-bottom: ${({ theme }) => theme.spacing.sm};
 `;
 
 const Achievement = styled.li`
   margin-bottom: ${({ theme }) => theme.spacing.xs};
   font-size: 1rem;
-  line-height: 1.6;
+  line-height: 1.7;
 `;
+
+const experience = [
+  {
+    role: 'Senior Engineer',
+    company: 'GlobalLogic Technologies (Client: Adobe)',
+    location: 'Gurugram, India',
+    duration: 'Apr 2025 – Present',
+    achievements: [
+      'Built reusable React and TypeScript UI components that improved delivery consistency and reduced duplicate engineering effort by about 30%.',
+      'Created Node.js automation utilities for large-scale pricing token migrations, significantly reducing manual effort and improving maintainability.',
+      'Improved performance through code refactoring, lazy loading and bundle optimization across multiple user journeys.',
+      'Collaborated with architects, designers and backend engineers to integrate secure REST APIs and strengthen release quality in Agile delivery cycles.'
+    ]
+  },
+  {
+    role: 'Associate Process Manager (Software Engineering)',
+    company: 'eClerx Services Ltd. (Client: PayPal)',
+    location: 'Mumbai, India',
+    duration: 'Apr 2023 – Apr 2025',
+    achievements: [
+      'Led frontend development for PayPal’s global rebranding initiative, modernizing more than 150 enterprise pages and improving UI consistency.',
+      'Developed reusable component libraries and shared utilities that reduced duplicate implementation effort by nearly 35%.',
+      'Built Node.js automation scripts that reduced repetitive validation activities by approximately 60%.',
+      'Resolved WCAG compliance issues through semantic HTML, keyboard support and ARIA improvements for inclusive enterprise experiences.'
+    ]
+  },
+  {
+    role: 'Senior Analyst',
+    company: 'eClerx Services Ltd. (Client: PayPal)',
+    location: 'Mumbai, India',
+    duration: 'Jul 2021 – Mar 2023',
+    achievements: [
+      'Designed and delivered responsive React applications using JavaScript and TypeScript for enterprise product teams.',
+      'Applied performance optimization techniques such as code splitting, memoization and asset improvement to enhance user experience.',
+      'Integrated RESTful APIs and backend services while maintaining a clean application architecture.',
+      'Received Employee of the Year (2022) for outstanding technical contributions and strategic automation initiatives.'
+    ]
+  }
+];
 
 const Experience: React.FC = () => {
   return (
-    <ExperienceSection>
+    <ExperienceSection id="experience">
       <Container>
         <Title
           initial={{ opacity: 0, y: 20 }}
@@ -159,56 +194,26 @@ const Experience: React.FC = () => {
           Professional Experience
         </Title>
         <Timeline>
-          <TimelineItem
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-          >
-            <TimelineContent>
-              <Role>Senior Frontend Developer</Role>
-              <Company>Eclerx Services Limited</Company>
-              <Duration>2023 - Present</Duration>
-              <ul>
-                <Achievement>Led the development of customer-facing applications, resulting in a 30% increase in user engagement</Achievement>
-                <Achievement>Implemented automated testing and CI/CD pipelines, reducing deployment time by 50%</Achievement>
-                <Achievement>Mentored junior developers and conducted code reviews to maintain high code quality standards</Achievement>
-              </ul>
-            </TimelineContent>
-          </TimelineItem>
-
-          <TimelineItem
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-          >
-            <TimelineContent>
-              <Role>Frontend Developer</Role>
-              <Company>Eclerx Services Limited</Company>
-              <Duration>2021 - 2023</Duration>
-              <ul>
-                <Achievement>Developed and maintained multiple client-facing web applications using React and TypeScript</Achievement>
-                <Achievement>Automated manual processes, reducing workload by 40% through innovative solutions</Achievement>
-                <Achievement>Collaborated with cross-functional teams to deliver projects on time and within budget</Achievement>
-              </ul>
-            </TimelineContent>
-          </TimelineItem>
-
-          <TimelineItem
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-          >
-            <TimelineContent>
-              <Role>Web Developer Intern</Role>
-              <Company>Eclerx Services Limited</Company>
-              <Duration>2020 - 2021</Duration>
-              <ul>
-                <Achievement>Developed and optimized 10+ responsive web pages, improving load time by 20% using HTML, CSS, JavaScript, and ReactJS</Achievement>
-                <Achievement>Collaborated with a team of 4 developers and designers, resolving 90% of reported UI bugs and implementing new features</Achievement>
-                <Achievement>Learning best practices in web development</Achievement>
-              </ul>
-            </TimelineContent>
-          </TimelineItem>
+          {experience.map((item, index) => (
+            <TimelineItem
+              key={item.role}
+              initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+            >
+              <TimelineContent>
+                <Role>{item.role}</Role>
+                <Company>{item.company}</Company>
+                <Location>{item.location}</Location>
+                <Duration>{item.duration}</Duration>
+                <ul>
+                  {item.achievements.map((achievement) => (
+                    <Achievement key={achievement}>{achievement}</Achievement>
+                  ))}
+                </ul>
+              </TimelineContent>
+            </TimelineItem>
+          ))}
         </Timeline>
       </Container>
     </ExperienceSection>

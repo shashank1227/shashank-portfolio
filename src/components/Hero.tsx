@@ -11,15 +11,13 @@ const HeroSection = styled.section`
   position: relative;
   overflow: hidden;
   justify-content: flex-start;
+  background: rgba(255, 255, 255, 0.01);
 
   &::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle at 50% 50%, rgba(0, 255, 157, 0.1) 0%, rgba(0, 255, 255, 0.05) 50%, transparent 100%);
+    inset: 0;
+    background: none;
     z-index: 0;
   }
 `;
@@ -43,19 +41,21 @@ const ProfileImage = styled(motion.img)`
   width: 200px;
   height: 200px;
   border-radius: 50%;
-  border: 4px solid ${({ theme }) => theme.colors.primary};
+  border: 4px solid transparent;
+  background: ${({ theme }) => theme.colors.gradient};
+  padding: 4px;
   margin-bottom: ${({ theme }) => theme.spacing.md};
   display: block;
+  object-fit: cover;
+  box-shadow: ${({ theme }) => theme.shadows.glow};
 `;
 
 const Title = styled(motion.h1)`
   font-size: 4rem;
   margin-bottom: ${({ theme }) => theme.spacing.sm};
-  background: ${({ theme }) => theme.colors.gradient};
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: ${({ theme }) => theme.colors.primary};
   word-break: break-word;
-  
+
   @media (max-width: 480px) {
     font-size: 2.5rem;
   }
@@ -67,25 +67,35 @@ const Subtitle = styled(motion.h2)`
   color: ${({ theme }) => theme.colors.accent};
 `;
 
+const HeroCopy = styled(motion.p)`
+  max-width: 720px;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: ${({ theme }) => theme.spacing.lg};
+  color: ${({ theme }) => theme.colors.text};
+  opacity: 0.9;
+`;
+
 const CTAButton = styled(motion.button)`
   padding: ${({ theme }) => theme.spacing.sm} ${({ theme }) => theme.spacing.md};
-  background: ${({ theme }) => theme.colors.gradient};
+  background: ${({ theme }) => theme.colors.primary};
   color: ${({ theme }) => theme.colors.background};
   border: none;
-  border-radius: 30px;
+  border-radius: 999px;
   font-weight: 600;
   cursor: pointer;
-  font-size: 1.2rem;
-  transition: box-shadow 0.2s ease;
+  font-size: 1.1rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
   outline: none;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.2);
 
   &:hover, &:focus {
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 255, 157, 0.3);
+    box-shadow: 0 14px 28px rgba(15, 23, 42, 0.24);
   }
 
   &:focus {
-    box-shadow: 0 0 0 3px rgba(0, 255, 157, 0.3);
+    box-shadow: 0 0 0 3px rgba(124, 156, 255, 0.27);
   }
 `;
 
@@ -93,22 +103,29 @@ const DownloadButton = styled(motion.a)`
   padding: ${({ theme }) => theme.spacing.sm} ${({ theme }) => theme.spacing.md};
   background: transparent;
   color: ${({ theme }) => theme.colors.primary};
-  border: 2px solid ${({ theme }) => theme.colors.primary};
-  border-radius: 30px;
+  border: 1px solid rgba(159, 176, 216, 0.35);
+  border-radius: 999px;
   font-weight: 600;
   cursor: pointer;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   display: inline-flex;
   align-items: center;
   gap: ${({ theme }) => theme.spacing.xs};
   text-decoration: none;
-  transition: box-shadow 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
   outline: none;
+  backdrop-filter: blur(10px);
+
+  &:hover, &:focus {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(15, 23, 42, 0.16);
+    border-color: ${({ theme }) => theme.colors.primary};
+  }
 
   &:focus {
-    box-shadow: 0 0 0 3px rgba(0, 255, 157, 0.3);
+    box-shadow: 0 0 0 3px rgba(124, 156, 255, 0.25);
   }
-  
+
   svg {
     font-size: 1rem;
   }
@@ -136,10 +153,10 @@ const ButtonContainer = styled.div`
 `;
 
 const Hero: React.FC = () => {
-  const handleContactClick = () => {
-    const contactSection = document.getElementById('contact');
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth' });
+  const handleProjectsClick = () => {
+    const projectsSection = document.getElementById('projects');
+    if (projectsSection) {
+      projectsSection.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
@@ -165,10 +182,11 @@ const Hero: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
-          <TypedText 
+          <TypedText
             strings={[
-              'Frontend Developer',
-              'Associate Process Manager at eClerx'
+              'Senior Software Engineer',
+              'React • TypeScript • Node.js',
+              'Java • Spring Boot • AI/LLM'
             ]}
             typeSpeed={50}
             backSpeed={30}
@@ -178,18 +196,25 @@ const Hero: React.FC = () => {
             className="text-primary"
           />
         </Subtitle>
+        <HeroCopy
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+        >
+          I build high-scale web applications, lead frontend architecture, and now create production-oriented AI experiences with React, Spring Boot, OpenAI, LangChain, and RAG.
+        </HeroCopy>
         <ButtonContainer>
           <CTAButton
             as={motion.button}
-            onClick={handleContactClick}
-            aria-label="Get in Touch with Shashank"
+            onClick={handleProjectsClick}
+            aria-label="Explore Shashank's projects"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ 
-              duration: 0.6, 
+            transition={{
+              duration: 0.6,
               delay: 0.6,
               scale: {
-                type: "spring",
+                type: 'spring',
                 stiffness: 400,
                 damping: 10
               }
@@ -197,7 +222,7 @@ const Hero: React.FC = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            Get in Touch
+            Explore Projects
           </CTAButton>
           <DownloadButton
             href={`${process.env.PUBLIC_URL}/ShashankResume.pdf`}
@@ -205,11 +230,11 @@ const Hero: React.FC = () => {
             aria-label="Download Shashank's Resume"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ 
-              duration: 0.6, 
+            transition={{
+              duration: 0.6,
               delay: 0.7,
               scale: {
-                type: "spring",
+                type: 'spring',
                 stiffness: 400,
                 damping: 10
               }

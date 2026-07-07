@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import Slider from 'react-slick';
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import { FaChevronRight, FaChevronLeft } from 'react-icons/fa';
 
 const ProjectsSection = styled.section`
@@ -65,13 +65,15 @@ const StyledSlider = styled(Slider)`
 `;
 
 const ProjectCard = styled(motion.div)`
-  background: ${({ theme }) => theme.colors.background};
-  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(6px);
+  border-radius: 20px;
   overflow: hidden;
   height: 100%;
   padding: ${({ theme }) => theme.spacing.md};
   margin: 0 ${({ theme }) => theme.spacing.xs};
   border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: ${({ theme }) => theme.shadows.soft};
   transition: all 0.3s ease;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
@@ -82,12 +84,12 @@ const ProjectCard = styled(motion.div)`
   &:hover {
     transform: translateY(-10px);
     border-color: ${({ theme }) => theme.colors.primary};
-    box-shadow: 0 10px 30px rgba(0, 255, 157, 0.1);
+    box-shadow: ${({ theme }) => theme.shadows.glow};
   }
 `;
 
 const ProjectTitle = styled.h3`
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   color: ${({ theme }) => theme.colors.primary};
   margin-bottom: ${({ theme }) => theme.spacing.sm};
 `;
@@ -95,7 +97,7 @@ const ProjectTitle = styled.h3`
 const ProjectDescription = styled.p`
   color: ${({ theme }) => theme.colors.text};
   margin-bottom: ${({ theme }) => theme.spacing.md};
-  line-height: 1.6;
+  line-height: 1.7;
 `;
 
 const TechStack = styled.div`
@@ -106,24 +108,19 @@ const TechStack = styled.div`
 `;
 
 const TechTag = styled.span`
-  background: rgba(0, 255, 157, 0.1);
-  color: ${({ theme }) => theme.colors.primary};
+  background: rgba(255, 255, 255, 0.05);
+  color: ${({ theme }) => theme.colors.secondary};
   padding: 6px 12px;
-  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
   font-size: 0.9rem;
-  transition: all 0.3s ease;
-
-  &:hover {
-    background: ${({ theme }) => theme.colors.primary};
-    color: ${({ theme }) => theme.colors.background};
-  }
 `;
 
 const ArrowButton = styled.button<{ direction: 'left' | 'right' }>`
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  ${({ direction }) => direction === 'left' ? 'left: -50px;' : 'right: -50px;'}
+  ${({ direction }) => (direction === 'left' ? 'left: -50px;' : 'right: -50px;')}
   background: ${({ theme }) => theme.colors.background};
   border: 1px solid ${({ theme }) => theme.colors.primary};
   color: ${({ theme }) => theme.colors.primary};
@@ -145,7 +142,7 @@ const ArrowButton = styled.button<{ direction: 'left' | 'right' }>`
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    ${({ direction }) => direction === 'left' ? 'left: 10px;' : 'right: 10px;'}
+    ${({ direction }) => (direction === 'left' ? 'left: 10px;' : 'right: 10px;')}
     width: 32px;
     height: 32px;
     background: ${({ theme }) => theme.colors.background};
@@ -155,30 +152,20 @@ const ArrowButton = styled.button<{ direction: 'left' | 'right' }>`
 
 const projects = [
   {
-    title: 'Enterprise Search Analytics Dashboard',
-    description: 'Built a real-time keyword analytics dashboard, reducing manual effort by 95%, improving targeting accuracy by 30%.',
-    tech: ['React', 'TypeScript', 'Elasticsearch', 'AWS Lambda'],
+    title: 'Enterprise AI Knowledge Assistant',
+    description: 'Built an enterprise knowledge assistant that combines RAG with OpenAI models to deliver context-aware responses from organizational documentation while minimizing hallucinations.',
+    tech: ['React', 'Java', 'Spring Boot', 'PostgreSQL', 'LangChain', 'OpenAI', 'RAG']
   },
   {
-    title: 'SEO Health Monitoring Platform',
-    description: 'Automated SEO audits, tracking 10k+ URLs/month, cutting audit time by 60%, increasing organic traffic by 15%.',
-    tech: ['React', 'D3.js', 'Node.js', 'Puppeteer'],
+    title: 'AI Resume Screening Platform',
+    description: 'Developed a recruiter-facing platform that matches resumes against job descriptions using semantic similarity, secure authentication and structured evaluation workflows.',
+    tech: ['React', 'Spring Boot', 'OpenAI', 'Vector DB', 'JWT', 'REST APIs']
   },
   {
-    title: 'ECM Keyword Search Automation',
-    description: 'Automated keyword searches, reducing manual effort by 95%, benefiting 500+ team members.',
-    tech: ['Node.js'],
-  },
-  {
-    title: 'URL Redirect Checker Tool',
-    description: 'Monitored 10,000+ URLs monthly, reducing maintenance time by 40%, increasing site traffic by 15%.',
-    tech: ['Node.js'],
-  },
-  {
-    title: 'Shared Page URL Extractor',
-    description: 'Improved audit accuracy by 30%, streamlining URL checks across 1000+ pages.',
-    tech: ['Node.js'],
-  },
+    title: 'AI Code Review Assistant',
+    description: 'Created an intelligent assistant that analyzes GitHub pull requests and provides AI-assisted recommendations for code quality, maintainability and best practices.',
+    tech: ['React', 'Spring Boot', 'GitHub API', 'OpenAI', 'Docker']
+  }
 ];
 
 const NextArrow = (props: any) => (
@@ -253,8 +240,8 @@ const Projects: React.FC = () => {
               <ProjectTitle>{project.title}</ProjectTitle>
               <ProjectDescription>{project.description}</ProjectDescription>
               <TechStack>
-                {project.tech.map((tech, techIndex) => (
-                  <TechTag key={techIndex}>{tech}</TechTag>
+                {project.tech.map((tech) => (
+                  <TechTag key={tech}>{tech}</TechTag>
                 ))}
               </TechStack>
             </ProjectCard>

@@ -1,32 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import Slider from 'react-slick';
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import { FaChevronRight, FaChevronLeft } from 'react-icons/fa';
 
 const TestimonialsSection = styled.section`
   background: ${({ theme }) => theme.colors.background};
   padding: ${({ theme }) => theme.spacing.xl} 0;
-  position: relative;
-  overflow: hidden;
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    padding: ${({ theme }) => theme.spacing.lg} 0;
-  }
 `;
 
 const Container = styled.div`
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 ${({ theme }) => theme.spacing.md};
-  position: relative;
-  overflow: hidden;
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    padding: 0 ${({ theme }) => theme.spacing.sm};
-  }
 `;
 
 const Title = styled(motion.h2)`
@@ -35,134 +19,48 @@ const Title = styled(motion.h2)`
   color: ${({ theme }) => theme.colors.primary};
 `;
 
-const StyledSlider = styled(Slider)`
-  .slick-track {
-    display: flex;
-    margin: 0 auto; /* Center the slides */
-  }
-
-  .slick-slide {
-    height: inherit;
-    > div {
-      height: 100%;
-      padding: 0;
-    }
-  }
-
-  .slick-dots {
-    bottom: -40px;
-    
-    li button:before {
-      color: ${({ theme }) => theme.colors.primary};
-      opacity: 0.3;
-      font-size: 8px;
-    }
-    
-    li.slick-active button:before {
-      color: ${({ theme }) => theme.colors.primary};
-      opacity: 1;
-    }
-  }
-
-  .slick-prev, .slick-next {
-    display: none !important;
-  }
-`;
-
 const TestimonialCard = styled(motion.div)`
-  background: ${({ theme }) => theme.colors.card};
-  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(16px);
+  border-radius: 20px;
   padding: ${({ theme }) => theme.spacing.lg};
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  max-height: 70vh;
-  overflow-y: auto;
-  box-sizing: border-box;
-  transition: all 0.3s ease;
-
-  &:hover {
-    border-color: ${({ theme }) => theme.colors.primary};
-    box-shadow: 0 10px 30px rgba(0, 255, 157, 0.3);
-  }
-
-  /* Custom scrollbar */
-  &::-webkit-scrollbar {
-    width: 8px;
-  }
-
-  &::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 4px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background: ${({ theme }) => theme.colors.primary + '40'};
-    border-radius: 4px;
-  }
-
-  &::-webkit-scrollbar-thumb:hover {
-    background: ${({ theme }) => theme.colors.primary + '80'};
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    padding: ${({ theme }) => theme.spacing.md};
-  }
+  box-shadow: ${({ theme }) => theme.shadows.soft};
+  margin-bottom: ${({ theme }) => theme.spacing.lg};
 `;
 
 const QuoteIcon = styled.span`
-  font-size: 5rem;
-  color: ${({ theme }) => theme.colors.primary};
-  opacity: 0.2;
-  margin-bottom: ${({ theme }) => theme.spacing.md};
-  margin-left: -8px;
-  font-family: 'Georgia', serif;
-  position: relative;
-  line-height: 0;
-  height: 50px;
   display: block;
-  transform: translateY(-15px);
-  text-shadow: 2px 2px 15px rgba(0, 255, 157, 0.3);
-  
-  &::before {
-    content: "\\201C"; /* Unicode for opening double quote */
-    position: absolute;
-    top: 30px;
-    left: 0;
-  }
+  font-size: 3.5rem;
+  color: ${({ theme }) => theme.colors.primary};
+  opacity: 0.45;
+  line-height: 1;
+  margin-bottom: 0.5rem;
 `;
 
 const TestimonialText = styled.div`
-  font-size: 1.2rem;
+  font-size: 1.05rem;
   line-height: 1.8;
-  margin-bottom: ${({ theme }) => theme.spacing.md};
-  flex-grow: 1;
-  text-align: left;
-  
+  color: ${({ theme }) => theme.colors.text};
+  opacity: 0.95;
+
   p {
-    margin-bottom: 1.5rem;
-  }
-  
-  p:last-child {
-    margin-bottom: 0;
+    margin-bottom: 1rem;
   }
 `;
 
 const TestimonialFooter = styled.div`
   display: flex;
   align-items: center;
-  margin-top: auto;
+  gap: ${({ theme }) => theme.spacing.sm};
+  margin-top: ${({ theme }) => theme.spacing.md};
 `;
 
 const TestimonialImage = styled.img`
-  width: 80px;
-  height: 80px;
+  width: 72px;
+  height: 72px;
   border-radius: 50%;
   object-fit: cover;
-  margin-right: ${({ theme }) => theme.spacing.sm};
   border: 2px solid ${({ theme }) => theme.colors.primary};
 `;
 
@@ -172,148 +70,117 @@ const TestimonialAuthor = styled.div`
 `;
 
 const AuthorName = styled.span`
-  font-weight: bold;
+  font-weight: 700;
   color: ${({ theme }) => theme.colors.text};
-  font-size: 1.1rem;
 `;
 
 const AuthorTitle = styled.span`
   color: ${({ theme }) => theme.colors.accent};
-  font-size: 0.9rem;
-  margin-top: 4px;
+  font-size: 0.95rem;
+  margin-top: 0.2rem;
 `;
 
-const ArrowButton = styled.button<{ direction: 'left' | 'right' }>`
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  ${({ direction }) => direction === 'left' ? 'left: 0;' : 'right: 0;'} 
-  background: ${({ theme }) => theme.colors.background};
-  border: 1px solid ${({ theme }) => theme.colors.primary};
-  color: ${({ theme }) => theme.colors.primary};
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 1;
-  opacity: 0.7;
-  transition: all 0.3s ease;
+const HighlightsGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: ${({ theme }) => theme.spacing.md};
+`;
 
-  &:hover {
-    opacity: 1;
-    background: ${({ theme }) => theme.colors.primary};
-    color: ${({ theme }) => theme.colors.background};
+const HighlightCard = styled(motion.div)`
+  background: rgba(255, 255, 255, 0.025);
+  border-radius: 16px;
+  padding: ${({ theme }) => theme.spacing.md};
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: ${({ theme }) => theme.shadows.soft};
+  min-height: 180px;
+
+  h3 {
+    color: ${({ theme }) => theme.colors.accent};
+    margin-bottom: 0.75rem;
   }
 
-  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    ${({ direction }) => direction === 'left' ? 'left: 10px;' : 'right: 10px;'}
-    width: 32px;
-    height: 32px;
-    display: none;
+  p {
+    line-height: 1.7;
+    color: ${({ theme }) => theme.colors.text};
+    opacity: 0.92;
   }
 `;
 
-// Helper function to format testimonial text with paragraphs
-const formatTestimonialText = (text: string) => {
-  // Split by <br /> or <br/> tags and create paragraphs
-  const paragraphs = text.split(/<br\s*\/?>/);
-  return paragraphs.map((paragraph, index) => (
-    <p key={index}>{paragraph.trim()}</p>
-  ));
+const testimonial = {
+  text: "I consider myself fortunate to have had the opportunity to closely collaborate with Shashank for over a year. In that time, he has consistently stood out as an exceptional talent. Shashank's technical expertise and problem-solving abilities are truly remarkable. He consistently delivers well-rounded and meticulously researched solutions, demonstrating a keen eye for detail.\n\nOne of Shashank's notable strengths is his ability to thrive in a fast-paced environment while simultaneously managing multiple tasks. His efficient work style and exceptional time management skills ensure that deadlines are consistently met. Moreover, his aptitude for effective collaboration with cross-functional teams is invaluable. Shashank possesses the unique ability to communicate complex technical information to non-technical stakeholders in a clear and understandable manner.\n\nFurthermore, Shashank's commitment to being a team player is commendable. He actively shares his knowledge with his peers, contributing to the growth and development of the entire team. His willingness to support and assist others is truly inspiring.\n\nIn summary, I wholeheartedly recommend Shashank for any endeavor that requires a highly skilled, detail-oriented, and collaborative professional. He will undoubtedly make a significant and positive impact wherever he goes.",
+  name: 'Shireen Roy',
+  title: 'Principal Consultant at Genpact Headstrong Canada',
+  image: '/shireenroy.jpeg'
 };
 
-const testimonials = [
+const highlights = [
   {
-    id: 1,
-    text: "I consider myself fortunate to have had the opportunity to closely collaborate with Shashank for over a year. In that time, he has consistently stood out as an exceptional talent. Shashank's technical expertise and problem-solving abilities are truly remarkable. He consistently delivers well-rounded and meticulously researched solutions, demonstrating a keen eye for detail.<br /><br />One of Shashank's notable strengths is his ability to thrive in a fast-paced environment while simultaneously managing multiple tasks. His efficient work style and exceptional time management skills ensure that deadlines are consistently met. Moreover, his aptitude for effective collaboration with cross-functional teams is invaluable. Shashank possesses the unique ability to communicate complex technical information to non-technical stakeholders in a clear and understandable manner.<br /><br />Furthermore, Shashank's commitment to being a team player is commendable. He actively shares his knowledge with his peers, contributing to the growth and development of the entire team. His willingness to support and assist others is truly inspiring.<br /><br />In summary, I wholeheartedly recommend Shashank for any endeavor that requires a highly skilled, detail-oriented, and collaborative professional. He will undoubtedly make a significant and positive impact wherever he goes.",
-    name: "Shireen Roy",
-    title: "Principal Consultant at Genpact Headstrong Canada",
-    image: "/shireenroy.jpeg",
+    title: 'Leadership & Ownership',
+    text: 'Led frontend modernization initiatives, mentored engineers, and helped improve release confidence through stronger engineering practices.'
   },
+  {
+    title: 'Recognition',
+    text: 'Recognized as Employee of the Year in 2022 for outstanding technical contributions and successful automation initiatives.'
+  },
+  {
+    title: 'Continuous Growth',
+    text: 'Expanded into Java, Spring Boot, OpenAI APIs, LangChain and RAG through production-focused portfolio projects and hands-on learning.'
+  },
+  {
+    title: 'Enterprise Impact',
+    text: 'Delivered solutions for Adobe and PayPal programs, balancing performance, accessibility, scalability and maintainability.'
+  }
 ];
 
-const NextArrow = (props: any) => (
-  <ArrowButton direction="right" onClick={props.onClick} aria-label="Next Testimonial">
-    <FaChevronRight />
-  </ArrowButton>
-);
-
-const PrevArrow = (props: any) => (
-  <ArrowButton direction="left" onClick={props.onClick} aria-label="Previous Testimonial">
-    <FaChevronLeft />
-  </ArrowButton>
-);
-
 const Testimonials: React.FC = () => {
-  const settings = {
-    dots: true,
-    infinite: testimonials.length > 1,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: testimonials.length > 1,
-    autoplaySpeed: 7000,
-    pauseOnHover: true,
-    nextArrow: <NextArrow />,
-    prevArrow: <PrevArrow />,
-    arrows: testimonials.length > 1,
-    adaptiveHeight: true,
-    swipeToSlide: true,
-    touchThreshold: 10,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          arrows: false
-        }
-      }
-    ]
-  };
-
   return (
-    <TestimonialsSection id="testimonials">
+    <TestimonialsSection>
       <Container>
         <Title
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
           viewport={{ once: true }}
         >
-          Testimonials
+          Recognition & Impact
         </Title>
-        <StyledSlider {...settings}>
-          {testimonials.map((testimonial) => (
-            <div key={testimonial.id}>
-              <TestimonialCard
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                viewport={{ once: true }}
-              >
-                <QuoteIcon />
-                <TestimonialText>
-                  {formatTestimonialText(testimonial.text)}
-                </TestimonialText>
-                <TestimonialFooter>
-                  <TestimonialImage 
-                    src={process.env.PUBLIC_URL + testimonial.image} 
-                    alt={`Portrait of ${testimonial.name}, ${testimonial.title}, who provided a testimonial for Shashank`}
-                  />
-                  <TestimonialAuthor>
-                    <AuthorName>{testimonial.name}</AuthorName>
-                    <AuthorTitle>{testimonial.title}</AuthorTitle>
-                  </TestimonialAuthor>
-                </TestimonialFooter>
-              </TestimonialCard>
-            </div>
+
+        <TestimonialCard
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+        >
+          <QuoteIcon>“</QuoteIcon>
+          <TestimonialText>
+            {testimonial.text.split('\n\n').map((paragraph, index) => (
+              <p key={index}>{paragraph}</p>
+            ))}
+          </TestimonialText>
+          <TestimonialFooter>
+            <TestimonialImage src={process.env.PUBLIC_URL + testimonial.image} alt={testimonial.name} />
+            <TestimonialAuthor>
+              <AuthorName>{testimonial.name}</AuthorName>
+              <AuthorTitle>{testimonial.title}</AuthorTitle>
+            </TestimonialAuthor>
+          </TestimonialFooter>
+        </TestimonialCard>
+
+        <HighlightsGrid>
+          {highlights.map((item, index) => (
+            <HighlightCard
+              key={item.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.08 }}
+            >
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </HighlightCard>
           ))}
-        </StyledSlider>
+        </HighlightsGrid>
       </Container>
     </TestimonialsSection>
   );
 };
 
-export default Testimonials; 
+export default Testimonials;

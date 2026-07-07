@@ -27,7 +27,8 @@ const FooterContent = styled.div`
 
 const Copyright = styled.p`
   color: ${({ theme }) => theme.colors.text};
-  font-size: 0.9rem;
+  font-size: 0.95rem;
+  opacity: 0.8;
 `;
 
 const SocialLinks = styled.div`
@@ -52,7 +53,7 @@ const Footer: React.FC = () => {
     <FooterSection>
       <FooterContent>
         <Copyright>
-          {currentYear} Shashank Shekhar Singh. All rights reserved.
+          {currentYear} Shashank Shekhar Singh. Built with React, TypeScript and Styled Components.
         </Copyright>
         <SocialLinks>
           <SocialLink

@@ -15,11 +15,11 @@ const QRCodeContainer = styled(motion.div)`
   bottom: 20px;
   right: 20px;
   z-index: 100;
-  background: ${({ theme }) => theme.colors.card};
-  border-radius: 12px;
-  padding: 16px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 18px;
+  padding: 14px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.28);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -31,7 +31,7 @@ const QRCodeContainer = styled(motion.div)`
     bottom: 16px;
     right: 16px;
     padding: 12px;
-    max-width: 160px;
+    max-width: 170px;
   }
 `;
 
@@ -42,14 +42,14 @@ const MobileButton = styled(motion.a)`
   z-index: 100;
   background: ${({ theme }) => theme.colors.primary};
   color: ${({ theme }) => theme.colors.background};
-  border-radius: 30px;
+  border-radius: 999px;
   padding: 10px 16px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2);
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  font-weight: bold;
+  font-weight: 600;
   text-decoration: none;
   font-size: 0.9rem;
   border: none;
@@ -58,9 +58,8 @@ const MobileButton = styled(motion.a)`
   contain: layout style;
   
   &:hover, &:focus {
-    background: ${({ theme }) => `${theme.colors.primary}cc`};
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 12px 26px rgba(0, 0, 0, 0.24);
   }
   
   &:active {
@@ -77,9 +76,10 @@ const MobileButton = styled(motion.a)`
 
 const QRTitle = styled.h4`
   margin-top: 0;
-  margin-bottom: 12px;
-  font-size: 0.9rem;
+  margin-bottom: 10px;
+  font-size: 0.92rem;
   color: ${({ theme }) => theme.colors.primary};
+  letter-spacing: 0.02em;
   
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
     font-size: 0.8rem;
@@ -89,10 +89,11 @@ const QRTitle = styled.h4`
 
 const QRDescription = styled.p`
   margin: 8px 0 0;
-  font-size: 0.8rem;
+  font-size: 0.76rem;
   text-align: center;
   color: ${({ theme }) => theme.colors.text};
-  opacity: 0.8;
+  opacity: 0.78;
+  line-height: 1.4;
   
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
     font-size: 0.7rem;
@@ -107,9 +108,9 @@ const IconButton = styled.button`
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background: ${({ theme }) => theme.colors.background};
-  border: 1px solid ${({ theme }) => theme.colors.primary};
-  color: ${({ theme }) => theme.colors.primary};
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: ${({ theme }) => theme.colors.text};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -119,7 +120,6 @@ const IconButton = styled.button`
   padding: 0;
   line-height: 1;
   
-  /* Center the × character properly */
   &::before {
     content: "×";
     display: block;
@@ -160,20 +160,19 @@ const GlowEffect = styled.div`
   }
 `;
 
-// Style for the QR code wrapper to add a subtle border around QR
 const QRCodeWrapper = styled.div`
   position: relative;
-  padding: 4px;
-  border-radius: 8px;
-  background: rgba(0, 255, 157, 0.1);
+  padding: 6px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.08);
   
-  /* Style the embedded image inside QR code */
   img {
     border-radius: 50% !important;
-    border: 2px solid #00ff9d !important;
+    border: 2px solid ${({ theme }) => theme.colors.primary} !important;
     will-change: transform;
   }
 `;
@@ -272,7 +271,7 @@ const ResumeQRCode: React.FC = () => {
               size={110}
               level="H"
               bgColor="transparent"
-              fgColor="#00ff9d"
+              fgColor="#9fb0d8"
               imageSettings={{
                 src: profilePicture,
                 excavate: true,
