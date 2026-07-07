@@ -43,8 +43,11 @@ const StatsGrid = styled.div`
   gap: ${({ theme }) => theme.spacing.sm};
   margin-top: ${({ theme }) => theme.spacing.md};
 
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    /* Stack the stat cards vertically on tablet and below */
+    display: grid;
     grid-template-columns: 1fr;
+    gap: ${({ theme }) => theme.spacing.sm};
   }
 `;
 
@@ -53,6 +56,10 @@ const StatCard = styled(motion.div)`
   padding: ${({ theme }) => theme.spacing.md};
   border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 160px; /* uniform card height */
 
   h3 {
     color: ${({ theme }) => theme.colors.primary};
@@ -64,6 +71,14 @@ const StatCard = styled(motion.div)`
     font-size: 0.95rem;
     color: ${({ theme }) => theme.colors.text};
     opacity: 0.9;
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    /* make cards more rectangular (wider, shorter) when stacked on small screens */
+    min-height: 110px;
+    max-height: none;
+    overflow: visible;
+    padding-right: ${({ theme }) => theme.spacing.sm};
   }
 `;
 

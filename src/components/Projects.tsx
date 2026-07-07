@@ -1,9 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
 import { FaChevronRight, FaChevronLeft } from 'react-icons/fa';
 
 const ProjectsSection = styled.section`
@@ -14,6 +11,7 @@ const ProjectsSection = styled.section`
 
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
     padding: ${({ theme }) => theme.spacing.lg} 0;
+    overflow: hidden;
   }
 `;
 
@@ -31,37 +29,17 @@ const Title = styled(motion.h2)`
   font-size: 2.5rem;
   color: ${({ theme }) => theme.colors.primary};
   margin-bottom: ${({ theme }) => theme.spacing.xl};
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    font-size: 1.8rem;
+    margin-bottom: ${({ theme }) => theme.spacing.lg};
+  }
 `;
 
-const StyledSlider = styled(Slider)`
-  .slick-track {
-    display: flex;
-    gap: ${({ theme }) => theme.spacing.md};
-  }
-
-  .slick-slide {
-    height: inherit;
-    > div {
-      height: 100%;
-      padding: 0 ${({ theme }) => theme.spacing.xs};
-    }
-  }
-
-  .slick-dots {
-    bottom: -40px;
-    li button:before {
-      color: ${({ theme }) => theme.colors.primary};
-    }
-    li.slick-active button:before {
-      color: ${({ theme }) => theme.colors.primary};
-    }
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    .slick-arrow {
-      display: none !important;
-    }
-  }
+const ProjectsGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: ${({ theme }) => theme.spacing.md};
+  align-items: stretch;
 `;
 
 const ProjectCard = styled(motion.div)`
@@ -69,9 +47,17 @@ const ProjectCard = styled(motion.div)`
   backdrop-filter: blur(6px);
   border-radius: 20px;
   overflow: hidden;
-  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 420px;
+  max-height: 420px;
   padding: ${({ theme }) => theme.spacing.md};
   margin: 0 ${({ theme }) => theme.spacing.xs};
+  flex: 0 0 320px;
+  min-width: 280px;
+  max-width: 520px;
+  width: 100%;
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: ${({ theme }) => theme.shadows.soft};
   transition: all 0.3s ease;
@@ -79,12 +65,34 @@ const ProjectCard = styled(motion.div)`
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
     margin: 0;
     padding: ${({ theme }) => theme.spacing.sm};
+    height: 420px;
+    max-height: 420px;
+    /* make mobile slides occupy container width (no peek) without using viewport units */
+    flex: 0 0 100%;
+    min-width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
   &:hover {
     transform: translateY(-10px);
     border-color: ${({ theme }) => theme.colors.primary};
     box-shadow: ${({ theme }) => theme.shadows.glow};
+  }
+`;
+
+const MobileScroller = styled.div`
+  display: flex;
+  gap: ${({ theme }) => theme.spacing.sm};
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
+  padding: 0 ${({ theme }) => theme.spacing.sm};
+
+  & > * {
+    scroll-snap-align: center;
+    flex: 0 0 100%;
+    box-sizing: border-box;
   }
 `;
 
@@ -98,6 +106,11 @@ const ProjectDescription = styled.p`
   color: ${({ theme }) => theme.colors.text};
   margin-bottom: ${({ theme }) => theme.spacing.md};
   line-height: 1.7;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
 `;
 
 const TechStack = styled.div`
@@ -114,40 +127,6 @@ const TechTag = styled.span`
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 999px;
   font-size: 0.9rem;
-`;
-
-const ArrowButton = styled.button<{ direction: 'left' | 'right' }>`
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  ${({ direction }) => (direction === 'left' ? 'left: -50px;' : 'right: -50px;')}
-  background: ${({ theme }) => theme.colors.background};
-  border: 1px solid ${({ theme }) => theme.colors.primary};
-  color: ${({ theme }) => theme.colors.primary};
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 1;
-  opacity: 0.7;
-  transition: all 0.3s ease;
-
-  &:hover {
-    opacity: 1;
-    background: ${({ theme }) => theme.colors.primary};
-    color: ${({ theme }) => theme.colors.background};
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    ${({ direction }) => (direction === 'left' ? 'left: 10px;' : 'right: 10px;')}
-    width: 32px;
-    height: 32px;
-    background: ${({ theme }) => theme.colors.background};
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  }
 `;
 
 const projects = [
@@ -168,55 +147,15 @@ const projects = [
   }
 ];
 
-const NextArrow = (props: any) => (
-  <ArrowButton direction="right" onClick={props.onClick} aria-label="Next Project">
-    <FaChevronRight />
-  </ArrowButton>
-);
-
-const PrevArrow = (props: any) => (
-  <ArrowButton direction="left" onClick={props.onClick} aria-label="Previous Project">
-    <FaChevronLeft />
-  </ArrowButton>
-);
-
 const Projects: React.FC = () => {
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 5000,
-    pauseOnHover: true,
-    nextArrow: <NextArrow />,
-    prevArrow: <PrevArrow />,
-    swipeToSlide: true,
-    touchThreshold: 10,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 2,
-          arrows: false,
-          dots: true,
-          swipeToSlide: true
-        }
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 1,
-          arrows: false,
-          dots: true,
-          swipeToSlide: true,
-          centerMode: true,
-          centerPadding: '20px'
-        }
-      }
-    ]
-  };
+  const [isMobile, setIsMobile] = React.useState(false);
+
+  React.useEffect(() => {
+    const check = () => setIsMobile(typeof window !== 'undefined' && window.innerWidth <= 768);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
 
   return (
     <ProjectsSection id="projects">
@@ -228,25 +167,48 @@ const Projects: React.FC = () => {
         >
           Featured Projects
         </Title>
-        <StyledSlider {...settings}>
-          {projects.map((project, index) => (
-            <ProjectCard
-              key={project.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-            >
-              <ProjectTitle>{project.title}</ProjectTitle>
-              <ProjectDescription>{project.description}</ProjectDescription>
-              <TechStack>
-                {project.tech.map((tech) => (
-                  <TechTag key={tech}>{tech}</TechTag>
-                ))}
-              </TechStack>
-            </ProjectCard>
-          ))}
-        </StyledSlider>
+
+        {isMobile ? (
+          <MobileScroller>
+            {projects.map((project, index) => (
+              <ProjectCard
+                key={project.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+              >
+                <ProjectTitle>{project.title}</ProjectTitle>
+                <ProjectDescription>{project.description}</ProjectDescription>
+                <TechStack>
+                  {project.tech.map((tech) => (
+                    <TechTag key={tech}>{tech}</TechTag>
+                  ))}
+                </TechStack>
+              </ProjectCard>
+            ))}
+          </MobileScroller>
+        ) : (
+          <ProjectsGrid>
+            {projects.map((project, index) => (
+              <ProjectCard
+                key={project.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+              >
+                <ProjectTitle>{project.title}</ProjectTitle>
+                <ProjectDescription>{project.description}</ProjectDescription>
+                <TechStack>
+                  {project.tech.map((tech) => (
+                    <TechTag key={tech}>{tech}</TechTag>
+                  ))}
+                </TechStack>
+              </ProjectCard>
+            ))}
+          </ProjectsGrid>
+        )}
       </Container>
     </ProjectsSection>
   );

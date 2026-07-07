@@ -327,7 +327,14 @@ const Certifications: React.FC = () => {
                 transition={{ delay: index * 0.05 }}
                 onClick={() => openImage(`${process.env.PUBLIC_URL}/${image.src}`, image.title)}
               >
-                <RecognitionImage src={`${process.env.PUBLIC_URL}/${image.src}`} alt={image.title} />
+                <RecognitionImage
+                src={`${process.env.PUBLIC_URL}/${image.src}`}
+                alt={image.title}
+                loading="lazy"
+                decoding="async"
+                width={480}
+                height={260}
+              />
                 <ImageMeta>
                   <h4>{image.title}</h4>
                   <p>{image.description}</p>

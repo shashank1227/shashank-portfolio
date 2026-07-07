@@ -169,6 +169,10 @@ const Hero: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
+          width={200}
+          height={200}
+          loading="eager"
+          decoding="sync"
         />
         <Title
           initial={{ opacity: 0, y: 20 }}

@@ -16,6 +16,10 @@ const Title = styled(motion.h2)`
   font-size: 2.5rem;
   margin-bottom: ${({ theme }) => theme.spacing.lg};
   color: ${({ theme }) => theme.colors.primary};
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    font-size: 1.8rem;
+    margin-bottom: ${({ theme }) => theme.spacing.md};
+  }
 `;
 
 const Timeline = styled.div`

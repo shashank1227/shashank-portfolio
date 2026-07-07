@@ -12,7 +12,6 @@ import Footer from './components/Footer';
 import ResumeQRCode from './components/ResumeQRCode';
 import GlobalStyle from './styles/GlobalStyle';
 import { theme } from './styles/theme';
-import { initGA, logPageView } from './utils/analytics';
 
 const AppContainer = styled.div`
   min-height: 100vh;
@@ -22,23 +21,39 @@ const AppContainer = styled.div`
   color: ${({ theme }) => theme.colors.text};
 `;
 
+const MainContent = styled.main`
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+`;
+
 const App: React.FC = () => {
   useEffect(() => {
-    initGA('G-59JRJJSMM1');
-    logPageView();
+    if (typeof window !== 'undefined' && window.location.hostname !== 'localhost') {
+      import('./utils/analytics')
+        .then(({ initGA, logPageView }) => {
+          initGA('G-59JRJJSMM1');
+          logPageView();
+        })
+        .catch(() => {
+          // Analytics deferred, no blocking failure needed
+        });
+    }
   }, []);
 
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <AppContainer>
-        <Hero />
-        <About />
-        <Experience />
-        <Projects />
-        <Testimonials />
-        <Certifications />
-        <Contact />
+        <MainContent>
+          <Hero />
+          <About />
+          <Experience />
+          <Projects />
+          <Testimonials />
+          <Certifications />
+          <Contact />
+        </MainContent>
         <Footer />
         <ResumeQRCode />
       </AppContainer>

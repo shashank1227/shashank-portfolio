@@ -9,6 +9,7 @@ const GlobalStyle = createGlobalStyle`
 
   html {
     scroll-behavior: smooth;
+      overflow-x: hidden;
   }
 
   body {
@@ -17,7 +18,8 @@ const GlobalStyle = createGlobalStyle`
     background-image: linear-gradient(135deg, #0b0f17 0%, #111827 100%);
     color: ${({ theme }) => theme.colors.text};
     line-height: 1.6;
-    overflow-x: hidden;
+      overflow-x: hidden;
+      width: 100%;
     letter-spacing: 0.01em;
   }
 

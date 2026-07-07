@@ -17,6 +17,10 @@ const Title = styled(motion.h2)`
   font-size: 2.5rem;
   margin-bottom: ${({ theme }) => theme.spacing.lg};
   color: ${({ theme }) => theme.colors.primary};
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    font-size: 1.8rem;
+    margin-bottom: ${({ theme }) => theme.spacing.md};
+  }
 `;
 
 const TestimonialCard = styled(motion.div)`
@@ -27,6 +31,14 @@ const TestimonialCard = styled(motion.div)`
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: ${({ theme }) => theme.shadows.soft};
   margin-bottom: ${({ theme }) => theme.spacing.lg};
+  
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    max-height: 56vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: ${({ theme }) => theme.spacing.md};
+    padding-right: calc(${({ theme }) => theme.spacing.sm} + 6px);
+  }
 `;
 
 const QuoteIcon = styled.span`
@@ -82,8 +94,25 @@ const AuthorTitle = styled.span`
 
 const HighlightsGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: ${({ theme }) => theme.spacing.md};
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    gap: ${({ theme }) => theme.spacing.md};
+    padding-bottom: ${({ theme }) => theme.spacing.sm};
+    scroll-snap-type: x mandatory;
+
+    & > * {
+      flex: 0 0 90%;
+      scroll-snap-align: start;
+      min-width: 260px;
+      box-sizing: border-box;
+    }
+  }
 `;
 
 const HighlightCard = styled(motion.div)`
@@ -93,6 +122,19 @@ const HighlightCard = styled(motion.div)`
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: ${({ theme }) => theme.shadows.soft};
   min-height: 180px;
+  min-width: 0;
+  width: 100%;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    border-radius: 16px;
+    padding: ${({ theme }) => theme.spacing.md};
+    margin-right: ${({ theme }) => theme.spacing.sm};
+  }
+
+  /* Prevent internal vertical scrollbars on small screens; allow card to grow */
+  overflow: visible;
+  height: auto;
+  min-height: 0;
 
   h3 {
     color: ${({ theme }) => theme.colors.accent};
@@ -156,7 +198,12 @@ const Testimonials: React.FC = () => {
             ))}
           </TestimonialText>
           <TestimonialFooter>
-            <TestimonialImage src={process.env.PUBLIC_URL + testimonial.image} alt={testimonial.name} />
+            <TestimonialImage
+              src={process.env.PUBLIC_URL + testimonial.image}
+              alt={testimonial.name}
+              loading="lazy"
+              decoding="async"
+            />
             <TestimonialAuthor>
               <AuthorName>{testimonial.name}</AuthorName>
               <AuthorTitle>{testimonial.title}</AuthorTitle>
