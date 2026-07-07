@@ -241,6 +241,11 @@ const recognitionImages = [
     src: '06_Rewards_Recognition_Adobe.jpg',
     title: 'Rewards & Recognition – Adobe',
     description: 'Recognition tied to Adobe engagement delivery'
+  },
+  {
+    src: 'Employee_of_the_Year_Award_eClerx22.jpg',
+    title: 'Employee of the Year — eClerx',
+    description: 'Employee of the Year award at eClerx Services (2022)'
   }
 ];
 
