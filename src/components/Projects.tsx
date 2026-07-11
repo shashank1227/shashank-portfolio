@@ -50,8 +50,8 @@ const ProjectCard = styled(motion.div)`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 420px;
-  max-height: 420px;
+  height: 450px;
+  max-height: 450px;
   padding: ${({ theme }) => theme.spacing.md};
   margin: 0 ${({ theme }) => theme.spacing.xs};
   flex: 0 0 320px;
@@ -65,8 +65,8 @@ const ProjectCard = styled(motion.div)`
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
     margin: 0;
     padding: ${({ theme }) => theme.spacing.sm};
-    height: 420px;
-    max-height: 420px;
+    height: 450px;
+    max-height: 450px;
     /* make mobile slides occupy container width (no peek) without using viewport units */
     flex: 0 0 100%;
     min-width: 100%;
@@ -132,13 +132,13 @@ const TechTag = styled.span`
 const projects = [
   {
     title: 'Enterprise AI Knowledge Assistant',
-    description: 'Built an enterprise knowledge assistant that combines RAG with OpenAI models to deliver context-aware responses from organizational documentation while minimizing hallucinations.',
+    description: 'Built a RAG-based enterprise knowledge assistant using OpenAI models to deliver accurate, context-aware answers from documentation.',
     tech: ['React', 'Java', 'Spring Boot', 'PostgreSQL', 'LangChain', 'OpenAI', 'RAG']
   },
   {
-    title: 'AI Resume Screening Platform',
-    description: 'Developed a recruiter-facing platform that matches resumes against job descriptions using semantic similarity, secure authentication and structured evaluation workflows.',
-    tech: ['React', 'Spring Boot', 'OpenAI', 'Vector DB', 'JWT', 'REST APIs']
+    title: 'AI Documentation Copilot',
+    description: 'Developed an AI knowledge assistant using RAG to enable semantic search across technical documentation.',
+    tech: ['React', 'Java', 'Spring Boot', 'PostgresSQL', 'pgvector', 'LangChain', 'OpenAI', 'Docker']
   },
   {
     title: 'AI Code Review Assistant',
