@@ -1,22 +1,21 @@
+'use client';
+
 import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { FaChevronRight, FaChevronLeft } from 'react-icons/fa';
 
 const ProjectsSection = styled.section`
-  background: ${({ theme }) => theme.colors.card};
+  background: transparent;
   padding: ${({ theme }) => theme.spacing.xl} 0;
-  position: relative;
-  overflow: hidden;
+  border-top: 1px solid ${({ theme }) => theme.colors.border};
 
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
     padding: ${({ theme }) => theme.spacing.lg} 0;
-    overflow: hidden;
   }
 `;
 
 const Container = styled.div`
-  max-width: 1200px;
+  max-width: 1080px;
   margin: 0 auto;
   padding: 0 ${({ theme }) => theme.spacing.md};
 
@@ -25,115 +24,140 @@ const Container = styled.div`
   }
 `;
 
+const SectionLabel = styled(motion.p)`
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: ${({ theme }) => theme.colors.accent};
+  margin-bottom: ${({ theme }) => theme.spacing.sm};
+`;
+
 const Title = styled(motion.h2)`
-  font-size: 2.5rem;
-  color: ${({ theme }) => theme.colors.primary};
-  margin-bottom: ${({ theme }) => theme.spacing.xl};
-  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    font-size: 1.8rem;
-    margin-bottom: ${({ theme }) => theme.spacing.lg};
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  color: ${({ theme }) => theme.colors.text};
+  margin-bottom: ${({ theme }) => theme.spacing.lg};
+  position: relative;
+  display: inline-block;
+
+  &::after {
+    content: '';
+    display: block;
+    width: 56px;
+    height: 4px;
+    margin-top: 0.65rem;
+    background: ${({ theme }) => theme.colors.accent};
+    border-radius: 999px;
   }
 `;
 
-const ProjectsGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: ${({ theme }) => theme.spacing.md};
-  align-items: stretch;
-`;
-
-const ProjectCard = styled(motion.div)`
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(6px);
-  border-radius: 20px;
-  overflow: hidden;
+const ProjectsList = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  height: 450px;
-  max-height: 450px;
-  padding: ${({ theme }) => theme.spacing.md};
-  margin: 0 ${({ theme }) => theme.spacing.xs};
-  flex: 0 0 320px;
-  min-width: 280px;
-  max-width: 520px;
-  width: 100%;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: ${({ theme }) => theme.shadows.soft};
-  transition: all 0.3s ease;
+`;
 
-  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    margin: 0;
-    padding: ${({ theme }) => theme.spacing.sm};
-    height: 450px;
-    max-height: 450px;
-    /* make mobile slides occupy container width (no peek) without using viewport units */
-    flex: 0 0 100%;
-    min-width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
+const ProjectRow = styled(motion.article)`
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: ${({ theme }) => theme.spacing.md};
+  padding: ${({ theme }) => theme.spacing.lg} 1rem;
+  margin: 0 -1rem;
+  border-top: 1px solid ${({ theme }) => theme.colors.border};
+  border-left: 3px solid transparent;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+
+  &:last-child {
+    border-bottom: 1px solid ${({ theme }) => theme.colors.border};
   }
 
   &:hover {
-    transform: translateY(-10px);
-    border-color: ${({ theme }) => theme.colors.primary};
-    box-shadow: ${({ theme }) => theme.shadows.glow};
+    background: ${({ theme }) => theme.colors.hoverSurface};
+    border-left-color: ${({ theme }) => theme.colors.accent};
+    transform: translateX(4px);
   }
-`;
 
-const MobileScroller = styled.div`
-  display: flex;
-  gap: ${({ theme }) => theme.spacing.sm};
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  scroll-snap-type: x mandatory;
-  padding: 0 ${({ theme }) => theme.spacing.sm};
-
-  & > * {
-    scroll-snap-align: center;
-    flex: 0 0 100%;
-    box-sizing: border-box;
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    grid-template-columns: 1fr;
+    gap: ${({ theme }) => theme.spacing.sm};
+    padding: ${({ theme }) => theme.spacing.md} 0.75rem;
+    margin: 0 -0.75rem;
   }
 `;
 
 const ProjectTitle = styled.h3`
-  font-size: 1.4rem;
-  color: ${({ theme }) => theme.colors.primary};
+  font-size: clamp(1.25rem, 2.5vw, 1.6rem);
+  color: ${({ theme }) => theme.colors.text};
   margin-bottom: ${({ theme }) => theme.spacing.sm};
+  transition: color 0.2s ease;
+
+  ${ProjectRow}:hover & {
+    color: ${({ theme }) => theme.colors.accent};
+  }
 `;
 
 const ProjectDescription = styled.p`
-  color: ${({ theme }) => theme.colors.text};
-  margin-bottom: ${({ theme }) => theme.spacing.md};
-  line-height: 1.7;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 5;
-  -webkit-box-orient: vertical;
+  color: ${({ theme }) => theme.colors.muted};
+  line-height: 1.75;
+  font-size: 1rem;
+`;
+
+const ProjectLinks = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
+  margin-top: 0.85rem;
+`;
+
+const ProjectLink = styled.a`
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: ${({ theme }) => theme.colors.accent};
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease, color 0.2s ease;
+
+  &:hover,
+  &:focus-visible {
+    border-bottom-color: ${({ theme }) => theme.colors.accent};
+  }
+
+  &:focus-visible {
+    outline: 1px solid ${({ theme }) => theme.colors.accent};
+    outline-offset: 3px;
+  }
 `;
 
 const TechStack = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-top: auto;
+  gap: 0.35rem 0.75rem;
+  align-content: flex-start;
 `;
 
 const TechTag = styled.span`
-  background: rgba(255, 255, 255, 0.05);
   color: ${({ theme }) => theme.colors.secondary};
-  padding: 6px 12px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 999px;
-  font-size: 0.9rem;
+  font-size: 0.88rem;
+  letter-spacing: 0.01em;
+
+  &:not(:last-child)::after {
+    content: '/';
+    margin-left: 0.75rem;
+    color: ${({ theme }) => theme.colors.muted};
+    opacity: 0.45;
+  }
 `;
 
 const projects = [
   {
     title: 'Enterprise AI Knowledge Assistant',
     description: 'Built a RAG-based enterprise knowledge assistant using OpenAI models to deliver accurate, context-aware answers from documentation.',
-    tech: ['React', 'Java', 'Spring Boot', 'PostgreSQL', 'LangChain', 'OpenAI', 'RAG']
+    tech: ['React', 'Java', 'Spring Boot', 'PostgreSQL', 'LangChain', 'OpenAI', 'RAG'],
+    links: [
+      { label: 'GitHub', href: 'https://github.com/shashank1227/enterprise-ai-knowledge-assistant' }
+    ]
   },
   {
     title: 'AI Documentation Copilot',
@@ -144,71 +168,73 @@ const projects = [
     title: 'AI Code Review Assistant',
     description: 'Created an intelligent assistant that analyzes GitHub pull requests and provides AI-assisted recommendations for code quality, maintainability and best practices.',
     tech: ['React', 'Spring Boot', 'GitHub API', 'OpenAI', 'Docker']
+  },
+  {
+    title: 'Weather App',
+    description: 'Built a minimal Next.js weather app with city search, geolocation, hourly and 7-day forecasts, weather-aware icons, and light/dark mode using Open-Meteo — no API key required.',
+    tech: ['Next.js', 'React', 'Open-Meteo', 'Geolocation API'],
+    links: [
+      { label: 'Live demo', href: 'https://shashank1227.github.io/WeatherApp/' },
+      { label: 'GitHub', href: 'https://github.com/shashank1227/WeatherApp' }
+    ]
   }
 ];
 
 const Projects: React.FC = () => {
-  const [isMobile, setIsMobile] = React.useState(false);
-
-  React.useEffect(() => {
-    const check = () => setIsMobile(typeof window !== 'undefined' && window.innerWidth <= 768);
-    check();
-    window.addEventListener('resize', check);
-    return () => window.removeEventListener('resize', check);
-  }, []);
-
   return (
     <ProjectsSection id="projects">
       <Container>
+        <SectionLabel
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+        >
+          Work
+        </SectionLabel>
         <Title
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
           Featured Projects
         </Title>
 
-        {isMobile ? (
-          <MobileScroller>
-            {projects.map((project, index) => (
-              <ProjectCard
-                key={project.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-              >
+        <ProjectsList>
+          {projects.map((project, index) => (
+            <ProjectRow
+              key={project.title}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.08 }}
+            >
+              <div>
                 <ProjectTitle>{project.title}</ProjectTitle>
                 <ProjectDescription>{project.description}</ProjectDescription>
-                <TechStack>
-                  {project.tech.map((tech) => (
-                    <TechTag key={tech}>{tech}</TechTag>
-                  ))}
-                </TechStack>
-              </ProjectCard>
-            ))}
-          </MobileScroller>
-        ) : (
-          <ProjectsGrid>
-            {projects.map((project, index) => (
-              <ProjectCard
-                key={project.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-              >
-                <ProjectTitle>{project.title}</ProjectTitle>
-                <ProjectDescription>{project.description}</ProjectDescription>
-                <TechStack>
-                  {project.tech.map((tech) => (
-                    <TechTag key={tech}>{tech}</TechTag>
-                  ))}
-                </TechStack>
-              </ProjectCard>
-            ))}
-          </ProjectsGrid>
-        )}
+                {'links' in project && project.links && project.links.length > 0 && (
+                  <ProjectLinks>
+                    {project.links.map((item) => (
+                      <ProjectLink
+                        key={item.href}
+                        href={item.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`${item.label} for ${project.title}`}
+                      >
+                        {item.label} →
+                      </ProjectLink>
+                    ))}
+                  </ProjectLinks>
+                )}
+              </div>
+              <TechStack>
+                {project.tech.map((tech) => (
+                  <TechTag key={tech}>{tech}</TechTag>
+                ))}
+              </TechStack>
+            </ProjectRow>
+          ))}
+        </ProjectsList>
       </Container>
     </ProjectsSection>
   );

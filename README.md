@@ -1,141 +1,115 @@
 # Shashank's Portfolio
 
-A modern, responsive portfolio website built with React, TypeScript, and Styled Components. This portfolio showcases professional experience, projects, and achievements with a sleek dark theme and neon accents.
+A modern, responsive portfolio built with **Next.js**, TypeScript, and Styled Components. It showcases professional experience, projects, and achievements with a minimal dark/light theme.
+
+**Live site:** [https://shashank1227.github.io/shashank-portfolio/](https://shashank1227.github.io/shashank-portfolio/)
 
 ## Features
 
-- Responsive design with modern UI/UX
-- Interactive animations using Framer Motion
-- Dark theme with neon accents
-- Sections for About, Experience, Projects, Certifications, and Contact
-- Contact form with social media links
-- Optimized performance and accessibility
-- Project carousel using React Slick
-- Downloadable resume in PDF format
-- Mobile-optimized QR code for resume scanning
-- Dynamic typing effect on the hero section
-- Testimonials section with client feedback
-- Performance optimizations with IntersectionObserver
-- Google Analytics with privacy-enhanced cookie settings
+- Responsive layout with a minimal yellow-accent design
+- Dark and light mode toggle (preference saved in `localStorage`)
+- Framer Motion scroll and entrance animations
+- Sections for About, Experience, Projects, Testimonials, Certifications, and Contact
+- Contact form (Formspree) with social links
+- Downloadable resume (PDF) plus mobile QR code CTA
+- Typed.js hero role animation
+- Project links (GitHub / live demo where available)
+- Google Analytics 4 (production only)
 
 ## Tech Stack
 
-- React 18
+- Next.js 16 (App Router, static export)
+- React 19
 - TypeScript
 - Styled Components
 - Framer Motion
+- Typed.js
 - React Icons
-- Typed.js for text animations
-- React Slick for carousels
 - Google Analytics 4
-- GitHub Pages for deployment
+- GitHub Pages (`gh-pages`)
 
 ## Getting Started
 
 1. Clone the repository:
+
 ```bash
 git clone https://github.com/shashank1227/shashank-portfolio.git
+cd shashank-portfolio
 ```
 
 2. Install dependencies:
+
 ```bash
-cd shashank-portfolio
 npm install
 ```
 
 3. Start the development server:
+
 ```bash
-npm start
+npm run dev
 ```
 
-4. Build for production:
-```bash
-npm run build
+4. Open the app (note the `basePath` for GitHub Pages):
+
+[http://127.0.0.1:3000/shashank-portfolio/](http://127.0.0.1:3000/shashank-portfolio/)
+
+> Visiting `/` alone will 404 in local and production because the site is served under `/shashank-portfolio/`.
+
+## Scripts
+
+| Command | Description |
+| --- | --- |
+| `npm run dev` / `npm start` | Start Next.js development server |
+| `npm run build` | Create a static export in `out/` |
+| `npm run lint` | Run Next.js lint |
+| `npm run deploy` | Build and publish `out/` to GitHub Pages |
+
+## Project Structure
+
+```text
+shashank-portfolio/
+├── app/                    # Next.js App Router
+│   ├── layout.tsx          # Metadata, fonts, providers
+│   └── page.tsx            # Home page
+├── public/                 # Static assets (resume, images, icons)
+├── src/
+│   ├── components/         # UI sections and shared components
+│   ├── hooks/              # Theme mode hook
+│   ├── styles/             # Theme + global styles
+│   └── utils/              # Analytics + asset path helpers
+├── next.config.ts          # Static export + basePath config
+├── package.json
+└── tsconfig.json
 ```
 
-5. Deploy to GitHub Pages:
+## Deployment
+
+The site uses Next.js `output: 'export'`. On every push to `main`, GitHub Actions builds the project and deploys the `out/` folder to GitHub Pages (see `.github/workflows/deploy.yml`).
+
+### One-time GitHub setup
+
+1. Open the repo on GitHub → **Settings** → **Pages**
+2. Under **Build and deployment**, set **Source** to **GitHub Actions**
+3. Push to `main` (or run the workflow manually from the **Actions** tab)
+
+### Manual deploy (optional)
+
 ```bash
 npm run deploy
 ```
 
-## Project Structure
+This still builds locally and publishes `out/` with `gh-pages` if you need a one-off deploy outside Actions.
 
-```
-shashank-portfolio/
-├── public/              # Public assets and HTML template
-│   ├── ShashankResume.pdf
-│   ├── profile.jpg
-│   └── index.html
-├── src/
-│   ├── components/     # React components
-│   │   ├── Hero.tsx
-│   │   ├── About.tsx
-│   │   ├── Experience.tsx
-│   │   ├── Projects.tsx
-│   │   ├── Certifications.tsx
-│   │   ├── Contact.tsx
-│   │   ├── TypedText.tsx
-│   │   ├── ResumeQRCode.tsx
-│   │   └── Testimonials.tsx
-│   ├── styles/        # Styled components and global styles
-│   │   ├── GlobalStyle.ts
-│   │   └── theme.ts
-│   ├── utils/         # Utility functions
-│   │   └── analytics.ts
-│   ├── App.tsx        # Main application component
-│   └── index.tsx      # Application entry point
-├── package.json       # Project dependencies and scripts
-└── tsconfig.json     # TypeScript configuration
-```
+## Configuration Notes
 
-## Scripts
-
-- `npm start`: Runs the app in development mode
-- `npm run build`: Builds the app for production
-- `npm run test`: Runs the test suite
-- `npm run deploy`: Deploys the app to GitHub Pages
-
-## Deployment
-
-The portfolio is deployed using GitHub Pages. The deployment process is automated using the `gh-pages` package. To deploy updates:
-
-1. Make your changes to the codebase
-2. Stage the changes: `git add .`
-3. Commit with a descriptive message: `git commit -m "Description of changes"`
-4. Push to the main branch: `git push`
-5. Deploy to GitHub Pages: `npm run deploy`
-
-To check the status of your changes before committing:
-```bash
-git status
-```
-
-## Performance Optimizations
-
-This portfolio includes several performance enhancements:
-
-- Image optimization and lazy loading
-- Code splitting for better load times
-- CSS containment with will-change properties
-- IntersectionObserver for scroll-based animations instead of scroll events
-- Debounced event handlers for resize events
-- Optimized animations with reduced motion for users who prefer it
-
-## Accessibility Features
-
-- Semantic HTML structure
-- ARIA attributes for interactive elements
-- Keyboard navigation support
-- Descriptive alt text for images
-- Color contrast that meets WCAG guidelines
-- Screen reader compatible components
+- `basePath` / `assetPrefix` are set to `/shashank-portfolio` in `next.config.ts` for GitHub Pages.
+- Theme preference is stored under `portfolio-theme` in `localStorage`.
+- Analytics initializes only when the hostname is not `localhost`.
 
 ## Browser Support
 
-The portfolio is optimized for:
-- Latest versions of Chrome, Firefox, and Safari
-- Edge
-- Mobile browsers
+- Latest Chrome, Firefox, Safari, and Edge
+- Modern mobile browsers
 
 ## License
 
@@ -143,4 +117,4 @@ ISC License
 
 ## Author
 
-Shashank
+Shashank Shekhar Singh

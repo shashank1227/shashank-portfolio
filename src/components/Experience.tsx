@@ -1,150 +1,125 @@
+'use client';
+
 import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
 const ExperienceSection = styled.section`
   padding: ${({ theme }) => theme.spacing.xl} 0;
+  border-top: 1px solid ${({ theme }) => theme.colors.border};
 `;
 
 const Container = styled.div`
-  max-width: 1200px;
+  max-width: 1080px;
   margin: 0 auto;
   padding: 0 ${({ theme }) => theme.spacing.md};
 `;
 
+const SectionLabel = styled(motion.p)`
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: ${({ theme }) => theme.colors.accent};
+  margin-bottom: ${({ theme }) => theme.spacing.sm};
+`;
+
 const Title = styled(motion.h2)`
-  font-size: 2.5rem;
+  font-size: clamp(2rem, 4vw, 2.75rem);
   margin-bottom: ${({ theme }) => theme.spacing.lg};
-  color: ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.colors.text};
+
+  &::after {
+    content: '';
+    display: block;
+    width: 56px;
+    height: 4px;
+    margin-top: 0.65rem;
+    background: ${({ theme }) => theme.colors.accent};
+    border-radius: 999px;
+  }
+
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    font-size: 1.8rem;
     margin-bottom: ${({ theme }) => theme.spacing.md};
   }
 `;
 
 const Timeline = styled.div`
-  position: relative;
-  max-width: 900px;
-  margin: 0 auto;
-
-  &::before {
-    content: '';
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 2px;
-    height: 100%;
-    background: ${({ theme }) => theme.colors.primary};
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    &::before {
-      left: 0;
-    }
-  }
-`;
-
-const TimelineItem = styled(motion.div)`
   display: flex;
-  justify-content: flex-end;
-  padding-right: 50%;
-  position: relative;
-  margin-bottom: ${({ theme }) => theme.spacing.lg};
+  flex-direction: column;
+  gap: 0;
+`;
 
-  &:nth-child(odd) {
-    justify-content: flex-start;
-    padding-right: 0;
-    padding-left: 50%;
+const TimelineItem = styled(motion.article)`
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: ${({ theme }) => theme.spacing.md};
+  padding: ${({ theme }) => theme.spacing.lg} 0;
+  border-top: 1px solid ${({ theme }) => theme.colors.border};
+
+  &:last-child {
+    border-bottom: 1px solid ${({ theme }) => theme.colors.border};
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    padding-right: 0;
-    padding-left: 30px;
-
-    &:nth-child(odd) {
-      padding-left: 30px;
-    }
+    grid-template-columns: 1fr;
+    gap: ${({ theme }) => theme.spacing.sm};
+    padding: ${({ theme }) => theme.spacing.md} 0;
   }
 `;
 
-const TimelineContent = styled(motion.div)`
-  background: ${({ theme }) => theme.colors.card};
-  padding: ${({ theme }) => theme.spacing.md};
-  border-radius: 12px;
-  width: 90%;
-  position: relative;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  transition: all 0.3s ease;
+const Meta = styled.div``;
 
-  &:hover {
-    transform: translateY(-5px);
-    border-color: ${({ theme }) => theme.colors.primary};
-    box-shadow: 0 8px 30px rgba(0, 255, 157, 0.12);
-  }
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 18px;
-    height: 18px;
-    background: ${({ theme }) => theme.colors.primary};
-    border-radius: 50%;
-  }
-
-  ${TimelineItem}:nth-child(odd) & {
-    &::before {
-      right: -58px;
-    }
-  }
-
-  ${TimelineItem}:nth-child(even) & {
-    &::before {
-      left: -58px;
-    }
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    width: 100%;
-
-    &::before {
-      left: -40px !important;
-    }
-  }
-`;
-
-const Role = styled.h3`
-  font-size: 1.4rem;
+const Duration = styled.p`
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
   color: ${({ theme }) => theme.colors.accent};
-  margin-bottom: ${({ theme }) => theme.spacing.xs};
-`;
-
-const Company = styled.h4`
-  font-size: 1.05rem;
-  color: ${({ theme }) => theme.colors.secondary};
-  margin-bottom: ${({ theme }) => theme.spacing.xs};
+  margin-bottom: 0.35rem;
 `;
 
 const Location = styled.p`
-  font-size: 0.95rem;
+  font-size: 0.9rem;
+  color: ${({ theme }) => theme.colors.muted};
+`;
+
+const Body = styled.div``;
+
+const Role = styled.h3`
+  font-size: 1.35rem;
   color: ${({ theme }) => theme.colors.text};
-  opacity: 0.8;
+  margin-bottom: 0.35rem;
+`;
+
+const Company = styled.h4`
+  font-family: ${({ theme }) => theme.fonts.primary};
+  font-size: 1rem;
+  font-weight: 400;
+  color: ${({ theme }) => theme.colors.secondary};
   margin-bottom: ${({ theme }) => theme.spacing.sm};
 `;
 
-const Duration = styled.p`
-  font-size: 0.95rem;
-  color: ${({ theme }) => theme.colors.text};
-  opacity: 0.85;
-  margin-bottom: ${({ theme }) => theme.spacing.sm};
+const AchievementList = styled.ul`
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
 `;
 
 const Achievement = styled.li`
-  margin-bottom: ${({ theme }) => theme.spacing.xs};
-  font-size: 1rem;
+  font-size: 0.98rem;
   line-height: 1.7;
+  color: ${({ theme }) => theme.colors.muted};
+  padding-left: 1rem;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.7em;
+    width: 4px;
+    height: 1px;
+    background: ${({ theme }) => theme.colors.accent};
+  }
 `;
 
 const experience = [
@@ -190,8 +165,15 @@ const Experience: React.FC = () => {
   return (
     <ExperienceSection id="experience">
       <Container>
+        <SectionLabel
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+        >
+          Career
+        </SectionLabel>
         <Title
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
@@ -201,21 +183,24 @@ const Experience: React.FC = () => {
           {experience.map((item, index) => (
             <TimelineItem
               key={item.role}
-              initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
+              transition={{ delay: index * 0.06 }}
             >
-              <TimelineContent>
+              <Meta>
+                <Duration>{item.duration}</Duration>
+                <Location>{item.location}</Location>
+              </Meta>
+              <Body>
                 <Role>{item.role}</Role>
                 <Company>{item.company}</Company>
-                <Location>{item.location}</Location>
-                <Duration>{item.duration}</Duration>
-                <ul>
+                <AchievementList>
                   {item.achievements.map((achievement) => (
                     <Achievement key={achievement}>{achievement}</Achievement>
                   ))}
-                </ul>
-              </TimelineContent>
+                </AchievementList>
+              </Body>
             </TimelineItem>
           ))}
         </Timeline>

@@ -2,15 +2,25 @@ import type { DefaultTheme } from 'styled-components';
 
 declare module 'styled-components' {
   export interface DefaultTheme {
+    mode: 'dark' | 'light';
     colors: {
       background: string;
+      surface: string;
       text: string;
+      muted: string;
       primary: string;
       secondary: string;
       accent: string;
+      accentSoft: string;
       card: string;
       cardDarker: string;
+      border: string;
       gradient: string;
+      selectionBg: string;
+      selectionText: string;
+      overlay: string;
+      hoverSurface: string;
+      onAccent: string;
     };
     fonts: {
       primary: string;
@@ -41,20 +51,10 @@ declare module 'styled-components' {
   }
 }
 
-export const theme: DefaultTheme = {
-  colors: {
-    background: '#0b0f17',
-    text: '#f3f4f6',
-    primary: '#9fb0d8',
-    secondary: '#d7def0',
-    accent: '#8b95a8',
-    card: 'rgba(18, 24, 39, 0.86)',
-    cardDarker: '#060911',
-    gradient: '#9fb0d8',
-  },
+const shared = {
   fonts: {
-    primary: "'Inter', sans-serif",
-    heading: "'Space Grotesk', sans-serif",
+    primary: "var(--font-body), 'DM Sans', sans-serif",
+    heading: "var(--font-heading), 'Bricolage Grotesque', sans-serif",
   },
   breakpoints: {
     mobile: '320px',
@@ -69,13 +69,64 @@ export const theme: DefaultTheme = {
     xl: '8rem',
   },
   borderRadius: {
-    sm: '12px',
-    md: '16px',
-    lg: '24px',
-    xl: '32px',
+    sm: '4px',
+    md: '8px',
+    lg: '12px',
+    xl: '16px',
   },
   shadows: {
-    soft: '0 16px 32px rgba(2, 8, 23, 0.24)',
-    glow: '0 0 0 1px rgba(143, 164, 255, 0.12), 0 14px 30px rgba(15, 23, 42, 0.16)',
+    soft: 'none',
+    glow: 'none',
   },
+} as const;
+
+export const darkTheme: DefaultTheme = {
+  mode: 'dark',
+  colors: {
+    background: '#0e0d0a',
+    surface: '#17150f',
+    text: '#fff6c8',
+    muted: '#a39a78',
+    primary: '#fff6c8',
+    secondary: '#e8d9a0',
+    accent: '#ffd93d',
+    accentSoft: 'rgba(255, 217, 61, 0.14)',
+    card: '#17150f',
+    cardDarker: '#0e0d0a',
+    border: 'rgba(255, 246, 200, 0.12)',
+    gradient: '#ffd93d',
+    selectionBg: 'rgba(255, 217, 61, 0.35)',
+    selectionText: '#0e0d0a',
+    overlay: 'rgba(8, 7, 5, 0.88)',
+    hoverSurface: 'rgba(255, 217, 61, 0.06)',
+    onAccent: '#0e0d0a',
+  },
+  ...shared,
 };
+
+export const lightTheme: DefaultTheme = {
+  mode: 'light',
+  colors: {
+    background: '#f3e28a',
+    surface: '#fff4b8',
+    text: '#0a0906',
+    muted: '#3a3424',
+    primary: '#0a0906',
+    secondary: '#16130c',
+    accent: '#5c4200',
+    accentSoft: 'rgba(92, 66, 0, 0.12)',
+    card: '#fff4b8',
+    cardDarker: '#e8d06a',
+    border: 'rgba(10, 9, 6, 0.22)',
+    gradient: '#5c4200',
+    selectionBg: 'rgba(92, 66, 0, 0.28)',
+    selectionText: '#fff8d6',
+    overlay: 'rgba(10, 9, 6, 0.72)',
+    hoverSurface: 'rgba(10, 9, 6, 0.06)',
+    onAccent: '#fff8d6',
+  },
+  ...shared,
+};
+
+/** @deprecated Use darkTheme / lightTheme */
+export const theme = darkTheme;

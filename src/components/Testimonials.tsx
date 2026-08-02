@@ -1,79 +1,93 @@
+'use client';
+
 import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
+import { withBase } from '@/utils/paths';
 
 const TestimonialsSection = styled.section`
-  background: ${({ theme }) => theme.colors.background};
+  background: transparent;
   padding: ${({ theme }) => theme.spacing.xl} 0;
+  border-top: 1px solid ${({ theme }) => theme.colors.border};
 `;
 
 const Container = styled.div`
-  max-width: 1200px;
+  max-width: 1080px;
   margin: 0 auto;
   padding: 0 ${({ theme }) => theme.spacing.md};
 `;
 
+const SectionLabel = styled(motion.p)`
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: ${({ theme }) => theme.colors.accent};
+  margin-bottom: ${({ theme }) => theme.spacing.sm};
+`;
+
 const Title = styled(motion.h2)`
-  font-size: 2.5rem;
+  font-size: clamp(2rem, 4vw, 2.75rem);
   margin-bottom: ${({ theme }) => theme.spacing.lg};
-  color: ${({ theme }) => theme.colors.primary};
-  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    font-size: 1.8rem;
-    margin-bottom: ${({ theme }) => theme.spacing.md};
+  color: ${({ theme }) => theme.colors.text};
+
+  &::after {
+    content: '';
+    display: block;
+    width: 56px;
+    height: 4px;
+    margin-top: 0.65rem;
+    background: ${({ theme }) => theme.colors.accent};
+    border-radius: 999px;
   }
 `;
 
-const TestimonialCard = styled(motion.div)`
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(16px);
-  border-radius: 20px;
-  padding: ${({ theme }) => theme.spacing.lg};
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: ${({ theme }) => theme.shadows.soft};
-  margin-bottom: ${({ theme }) => theme.spacing.lg};
-  
-  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    max-height: 56vh;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-    padding: ${({ theme }) => theme.spacing.md};
-    padding-right: calc(${({ theme }) => theme.spacing.sm} + 6px);
-  }
+const TestimonialBlock = styled(motion.blockquote)`
+  margin: 0 0 ${({ theme }) => theme.spacing.lg};
+  padding: 0;
+  border: none;
 `;
 
-const QuoteIcon = styled.span`
+const QuoteMark = styled.span`
   display: block;
-  font-size: 3.5rem;
-  color: ${({ theme }) => theme.colors.primary};
-  opacity: 0.45;
+  font-family: ${({ theme }) => theme.fonts.heading};
+  font-size: 3rem;
+  color: ${({ theme }) => theme.colors.accent};
   line-height: 1;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
+  opacity: 0.7;
 `;
 
 const TestimonialText = styled.div`
   font-size: 1.05rem;
-  line-height: 1.8;
-  color: ${({ theme }) => theme.colors.text};
-  opacity: 0.95;
+  line-height: 1.85;
+  color: ${({ theme }) => theme.colors.secondary};
+  max-width: 48rem;
 
   p {
     margin-bottom: 1rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 `;
 
-const TestimonialFooter = styled.div`
+const TestimonialFooter = styled.footer`
   display: flex;
   align-items: center;
   gap: ${({ theme }) => theme.spacing.sm};
   margin-top: ${({ theme }) => theme.spacing.md};
+  padding-top: ${({ theme }) => theme.spacing.md};
+  border-top: 1px solid ${({ theme }) => theme.colors.border};
 `;
 
 const TestimonialImage = styled.img`
-  width: 72px;
-  height: 72px;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid ${({ theme }) => theme.colors.primary};
+  border: 1px solid ${({ theme }) => theme.colors.border};
 `;
 
 const TestimonialAuthor = styled.div`
@@ -81,70 +95,53 @@ const TestimonialAuthor = styled.div`
   flex-direction: column;
 `;
 
-const AuthorName = styled.span`
-  font-weight: 700;
+const AuthorName = styled.cite`
+  font-style: normal;
+  font-weight: 600;
+  font-family: ${({ theme }) => theme.fonts.heading};
   color: ${({ theme }) => theme.colors.text};
 `;
 
 const AuthorTitle = styled.span`
-  color: ${({ theme }) => theme.colors.accent};
-  font-size: 0.95rem;
+  color: ${({ theme }) => theme.colors.muted};
+  font-size: 0.9rem;
   margin-top: 0.2rem;
 `;
 
 const HighlightsGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: ${({ theme }) => theme.spacing.md};
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0;
+  border-top: 1px solid ${({ theme }) => theme.colors.border};
 
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    display: flex;
-    flex-direction: row;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    gap: ${({ theme }) => theme.spacing.md};
-    padding-bottom: ${({ theme }) => theme.spacing.sm};
-    scroll-snap-type: x mandatory;
-
-    & > * {
-      flex: 0 0 90%;
-      scroll-snap-align: start;
-      min-width: 260px;
-      box-sizing: border-box;
-    }
+    grid-template-columns: 1fr;
   }
 `;
 
-const HighlightCard = styled(motion.div)`
-  background: rgba(255, 255, 255, 0.025);
-  border-radius: 16px;
+const HighlightItem = styled(motion.div)`
   padding: ${({ theme }) => theme.spacing.md};
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: ${({ theme }) => theme.shadows.soft};
-  min-height: 180px;
-  min-width: 0;
-  width: 100%;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.border};
+  border-right: 1px solid ${({ theme }) => theme.colors.border};
 
-  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    border-radius: 16px;
-    padding: ${({ theme }) => theme.spacing.md};
-    margin-right: ${({ theme }) => theme.spacing.sm};
+  &:nth-child(2n) {
+    border-right: none;
   }
 
-  /* Prevent internal vertical scrollbars on small screens; allow card to grow */
-  overflow: visible;
-  height: auto;
-  min-height: 0;
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    border-right: none;
+  }
 
   h3 {
-    color: ${({ theme }) => theme.colors.accent};
-    margin-bottom: 0.75rem;
+    font-size: 1.1rem;
+    color: ${({ theme }) => theme.colors.text};
+    margin-bottom: 0.6rem;
   }
 
   p {
     line-height: 1.7;
-    color: ${({ theme }) => theme.colors.text};
-    opacity: 0.92;
+    color: ${({ theme }) => theme.colors.muted};
+    font-size: 0.95rem;
   }
 `;
 
@@ -178,20 +175,27 @@ const Testimonials: React.FC = () => {
   return (
     <TestimonialsSection>
       <Container>
+        <SectionLabel
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+        >
+          Impact
+        </SectionLabel>
         <Title
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
           Recognition & Impact
         </Title>
 
-        <TestimonialCard
-          initial={{ opacity: 0, y: 20 }}
+        <TestimonialBlock
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <QuoteIcon>“</QuoteIcon>
+          <QuoteMark>“</QuoteMark>
           <TestimonialText>
             {testimonial.text.split('\n\n').map((paragraph, index) => (
               <p key={index}>{paragraph}</p>
@@ -199,7 +203,7 @@ const Testimonials: React.FC = () => {
           </TestimonialText>
           <TestimonialFooter>
             <TestimonialImage
-              src={process.env.PUBLIC_URL + testimonial.image}
+              src={withBase(testimonial.image)}
               alt={testimonial.name}
               loading="lazy"
               decoding="async"
@@ -209,20 +213,20 @@ const Testimonials: React.FC = () => {
               <AuthorTitle>{testimonial.title}</AuthorTitle>
             </TestimonialAuthor>
           </TestimonialFooter>
-        </TestimonialCard>
+        </TestimonialBlock>
 
         <HighlightsGrid>
           {highlights.map((item, index) => (
-            <HighlightCard
+            <HighlightItem
               key={item.title}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.08 }}
+              transition={{ delay: index * 0.06 }}
             >
               <h3>{item.title}</h3>
               <p>{item.text}</p>
-            </HighlightCard>
+            </HighlightItem>
           ))}
         </HighlightsGrid>
       </Container>

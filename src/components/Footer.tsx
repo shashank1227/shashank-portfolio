@@ -1,16 +1,19 @@
+'use client';
+
 import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 
 const FooterSection = styled.footer`
-  background: ${({ theme }) => theme.colors.background};
+  background: transparent;
   padding: ${({ theme }) => theme.spacing.md} 0;
   margin-top: auto;
+  border-top: 1px solid ${({ theme }) => theme.colors.border};
 `;
 
 const FooterContent = styled.div`
-  max-width: 1200px;
+  max-width: 1080px;
   margin: 0 auto;
   padding: 0 ${({ theme }) => theme.spacing.md};
   display: flex;
@@ -26,9 +29,8 @@ const FooterContent = styled.div`
 `;
 
 const Copyright = styled.p`
-  color: ${({ theme }) => theme.colors.text};
-  font-size: 0.95rem;
-  opacity: 0.8;
+  color: ${({ theme }) => theme.colors.muted};
+  font-size: 0.85rem;
 `;
 
 const SocialLinks = styled.div`
@@ -37,12 +39,12 @@ const SocialLinks = styled.div`
 `;
 
 const SocialLink = styled(motion.a)`
-  color: ${({ theme }) => theme.colors.text};
-  font-size: 1.5rem;
-  transition: color 0.3s ease;
+  color: ${({ theme }) => theme.colors.muted};
+  font-size: 1.25rem;
+  transition: color 0.2s ease;
 
   &:hover {
-    color: ${({ theme }) => theme.colors.primary};
+    color: ${({ theme }) => theme.colors.accent};
   }
 `;
 
@@ -53,7 +55,7 @@ const Footer: React.FC = () => {
     <FooterSection>
       <FooterContent>
         <Copyright>
-          {currentYear} Shashank Shekhar Singh. Built with React, TypeScript and Styled Components.
+          {currentYear} Shashank Shekhar Singh
         </Copyright>
         <SocialLinks>
           <SocialLink
@@ -61,7 +63,7 @@ const Footer: React.FC = () => {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Visit Shashank's LinkedIn profile"
-            whileHover={{ y: -3 }}
+            whileHover={{ y: -2 }}
           >
             <FaLinkedin aria-label="LinkedIn icon" />
           </SocialLink>
@@ -70,7 +72,7 @@ const Footer: React.FC = () => {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Visit Shashank's GitHub profile"
-            whileHover={{ y: -3 }}
+            whileHover={{ y: -2 }}
           >
             <FaGithub aria-label="GitHub icon" />
           </SocialLink>
