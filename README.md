@@ -89,8 +89,9 @@ The site uses Next.js `output: 'export'`. On every push to `main`, GitHub Action
 ### One-time GitHub setup
 
 1. Open the repo on GitHub → **Settings** → **Pages**
-2. Under **Build and deployment**, set **Source** to **GitHub Actions**
-3. Push to `main` (or run the workflow manually from the **Actions** tab)
+2. Under **Build and deployment**, set **Source** to **Deploy from a branch**
+3. Choose branch **`gh-pages`** / folder **`/`** (root)
+4. Push to `main` (or run the workflow manually from the **Actions** tab)
 
 ### Manual deploy (optional)
 
