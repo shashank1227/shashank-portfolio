@@ -67,7 +67,7 @@ def main() -> None:
     draw = ImageDraw.Draw(canvas)
 
     # Accent slash
-    draw.rounded_rectangle((1120, 110, 1128, 280), radius=4, fill=ACCENT)
+    #draw.rounded_rectangle((1120, 110, 1128, 280), radius=4, fill=ACCENT)
 
     avatar = circular_avatar(PROFILE, 220, border=12)
     canvas.paste(avatar, (90, (H - avatar.height) // 2), avatar)
