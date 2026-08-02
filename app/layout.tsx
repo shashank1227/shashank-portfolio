@@ -51,7 +51,7 @@ export const metadata: Metadata = {
       'Senior Software Engineer building scalable frontend systems, enterprise platforms, and AI-enabled products with React, TypeScript, Java, Spring Boot, and LLM technologies.',
     images: [
       {
-        url: '/meta-image-v2.png',
+        url: '/meta-image-v3.png',
         width: 1200,
         height: 630,
         type: 'image/png',
@@ -62,7 +62,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Shashank Shekhar Singh | Senior Software Engineer',
     description: 'React, TypeScript, Node.js, Java, Spring Boot, and AI-powered product development.',
-    images: ['/meta-image-v2.png'],
+    images: ['/meta-image-v3.png'],
   },
 };
 
