@@ -94,8 +94,11 @@ const ProfileRow = styled(motion.div)`
 const ProfileImage = styled.img`
   width: 88px;
   height: 88px;
+  flex-shrink: 0;
+  aspect-ratio: 1;
   border-radius: 50%;
   object-fit: cover;
+  object-position: center;
   border: 3px solid ${({ theme }) => theme.colors.accent};
   background: ${({ theme }) => theme.colors.surface};
 

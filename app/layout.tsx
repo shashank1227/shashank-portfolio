@@ -14,7 +14,9 @@ const dmSans = DM_Sans({
   display: 'swap',
 });
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
 const siteUrl = 'https://shashank1227.github.io/shashank-portfolio/';
+const asset = (path: string) => `${basePath}${path}`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -36,13 +38,13 @@ export const metadata: Metadata = {
   authors: [{ name: 'Shashank Shekhar Singh' }],
   icons: {
     icon: [
-      { url: '/favicon.ico' },
-      { url: '/favicon-96x96.png', sizes: '96x96', type: 'image/png' },
-      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: asset('/favicon.ico'), sizes: 'any' },
+      { url: asset('/favicon-96x96.png'), sizes: '96x96', type: 'image/png' },
+      { url: asset('/favicon.svg'), type: 'image/svg+xml' },
     ],
-    apple: [{ url: '/apple-touch-icon.png', sizes: '180x180' }],
+    apple: [{ url: asset('/apple-touch-icon.png'), sizes: '180x180' }],
   },
-  manifest: '/manifest.json',
+  manifest: asset('/manifest.json'),
   openGraph: {
     type: 'website',
     url: siteUrl,
@@ -51,7 +53,7 @@ export const metadata: Metadata = {
       'Senior Software Engineer building scalable frontend systems, enterprise platforms, and AI-enabled products with React, TypeScript, Java, Spring Boot, and LLM technologies.',
     images: [
       {
-        url: '/meta-image-v3.png',
+        url: '/meta-image-v4.png',
         width: 1200,
         height: 630,
         type: 'image/png',
@@ -62,12 +64,15 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Shashank Shekhar Singh | Senior Software Engineer',
     description: 'React, TypeScript, Node.js, Java, Spring Boot, and AI-powered product development.',
-    images: ['/meta-image-v3.png'],
+    images: ['/meta-image-v4.png'],
   },
 };
 
 export const viewport: Viewport = {
-  themeColor: '#0e0d0a',
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#f3e28a' },
+    { media: '(prefers-color-scheme: dark)', color: '#0e0d0a' },
+  ],
   width: 'device-width',
   initialScale: 1,
 };
@@ -76,7 +81,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${bricolage.variable} ${dmSans.variable}`} suppressHydrationWarning>
       <head>
-        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#0a0a0a" />
         <script
           dangerouslySetInnerHTML={{
             __html: `

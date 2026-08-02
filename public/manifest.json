@@ -1,25 +1,26 @@
 {
-  "short_name": "Shashank Portfolio",
-  "name": "Shashank Shekhar Singh - Frontend Developer",
+  "short_name": "Shashank",
+  "name": "Shashank Shekhar Singh — Portfolio",
   "icons": [
     {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
+      "src": "/shashank-portfolio/favicon.ico",
+      "sizes": "48x48",
       "type": "image/x-icon"
     },
     {
-      "src": "web-app-manifest-192x192.png",
+      "src": "/shashank-portfolio/web-app-manifest-192x192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "web-app-manifest-512x512.png",
+      "src": "/shashank-portfolio/web-app-manifest-512x512.png",
       "type": "image/png",
       "sizes": "512x512"
     }
   ],
-  "start_url": ".",
+  "start_url": "/shashank-portfolio/",
+  "scope": "/shashank-portfolio/",
   "display": "standalone",
-  "theme_color": "#0a0a0a",
-  "background_color": "#0a0a0a"
+  "theme_color": "#f3e28a",
+  "background_color": "#f3e28a"
 }
