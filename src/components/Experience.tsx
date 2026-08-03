@@ -129,10 +129,11 @@ const experience = [
     location: 'Gurugram, India',
     duration: 'Apr 2025 – Present',
     achievements: [
-      'Built reusable React and TypeScript UI components that improved delivery consistency and reduced duplicate engineering effort by about 30%.',
-      'Created Node.js automation utilities for large-scale pricing token migrations, significantly reducing manual effort and improving maintainability.',
-      'Improved performance through code refactoring, lazy loading and bundle optimization across multiple user journeys.',
-      'Collaborated with architects, designers and backend engineers to integrate secure REST APIs and strengthen release quality in Agile delivery cycles.'
+      'Build enterprise-grade full-stack applications using React.js, TypeScript, Java, and Spring Boot, delivering reusable UI components and scalable backend services adopted across multiple product modules, cutting duplicate implementation effort by approximately 30%.',
+      'Design and integrate secure RESTful APIs, enabling seamless communication between frontend and backend services for high-performance enterprise applications.',
+      'Engineer Node.js automation utilities that streamline pricing token migration across 40+ regional configurations, reducing manual engineering effort by nearly 90% and improving deployment consistency.',
+      'Optimize application performance through lazy loading, code splitting, backend API tuning, and component refactoring, improving Lighthouse performance scores by up to 20 points across key user journeys.',
+      'Implement WCAG 2.1-compliant accessibility enhancements across enterprise applications, improving usability for keyboard navigation and assistive technology users.'
     ]
   },
   {
