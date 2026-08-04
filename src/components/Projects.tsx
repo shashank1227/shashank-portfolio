@@ -299,6 +299,24 @@ const projects: Project[] = [
       { label: 'GitHub', href: 'https://github.com/shashank1227/WeatherApp' },
     ],
   },
+  {
+    title: 'URL Redirect Checker',
+    description:
+      'Built a Node.js CLI that audits thousands of URLs from CSV/Excel, captures full redirect chains, status codes, latency, and SSL errors, and flags broken links, loops, multi-hop chains, and canonical issues in a report.',
+    tech: ['Node.js', 'Axios', 'CSV', 'Excel', 'CLI'],
+    links: [
+      { label: 'GitHub', href: 'https://github.com/shashank1227/url-redirect-checker' },
+    ],
+  },
+  {
+    title: 'Image Hoster',
+    description:
+      'Built a Spring Boot image hosting application with registration and login, plus upload, edit, delete, and tag-based organization backed by PostgreSQL.',
+    tech: ['Java', 'Spring Boot', 'Thymeleaf', 'JPA', 'PostgreSQL'],
+    links: [
+      { label: 'GitHub', href: 'https://github.com/shashank1227/Image-Hoster' },
+    ],
+  },
 ];
 
 const Projects: React.FC = () => {
