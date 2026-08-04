@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
@@ -108,16 +108,40 @@ const ProjectLinks = styled.div`
   margin-top: 0.85rem;
 `;
 
-const ProjectLink = styled.a`
+const linkStyles = `
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
   font-size: 0.9rem;
   font-weight: 600;
-  color: ${({ theme }) => theme.colors.accent};
   text-decoration: none;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+  font-family: inherit;
   border-bottom: 1px solid transparent;
   transition: border-color 0.2s ease, color 0.2s ease;
+`;
+
+const ProjectLink = styled.a`
+  ${linkStyles}
+  color: ${({ theme }) => theme.colors.accent};
+
+  &:hover,
+  &:focus-visible {
+    border-bottom-color: ${({ theme }) => theme.colors.accent};
+  }
+
+  &:focus-visible {
+    outline: 1px solid ${({ theme }) => theme.colors.accent};
+    outline-offset: 3px;
+  }
+`;
+
+const DemoButton = styled.button`
+  ${linkStyles}
+  color: ${({ theme }) => theme.colors.accent};
 
   &:hover,
   &:focus-visible {
@@ -150,37 +174,153 @@ const TechTag = styled.span`
   }
 `;
 
-const projects = [
+const ModalOverlay = styled.div`
+  position: fixed;
+  inset: 0;
+  background: ${({ theme }) => theme.colors.overlay};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: ${({ theme }) => theme.spacing.md};
+  z-index: 1000;
+`;
+
+const ModalContent = styled.div`
+  position: relative;
+  width: min(100%, 960px);
+  background: ${({ theme }) => theme.colors.surface};
+  border: 1px solid ${({ theme }) => theme.colors.border};
+  border-radius: ${({ theme }) => theme.borderRadius.sm};
+  overflow: hidden;
+`;
+
+const ModalHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: ${({ theme }) => theme.spacing.sm} ${({ theme }) => theme.spacing.md};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.border};
+`;
+
+const ModalTitle = styled.h3`
+  color: ${({ theme }) => theme.colors.text};
+  margin: 0;
+  font-size: 1rem;
+`;
+
+const CloseButton = styled.button`
+  background: transparent;
+  border: 0;
+  color: ${({ theme }) => theme.colors.muted};
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  transition: color 0.2s ease;
+
+  &:hover,
+  &:focus-visible {
+    color: ${({ theme }) => theme.colors.text};
+  }
+`;
+
+const VideoFrame = styled.div`
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #0a0906;
+
+  iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+`;
+
+const ModalFooter = styled.div`
+  padding: ${({ theme }) => theme.spacing.sm} ${({ theme }) => theme.spacing.md};
+  border-top: 1px solid ${({ theme }) => theme.colors.border};
+`;
+
+type ProjectLinkItem = {
+  label: string;
+  href: string;
+};
+
+type Project = {
+  title: string;
+  description: string;
+  tech: string[];
+  links?: ProjectLinkItem[];
+  demoVideo?: {
+    label: string;
+    embedUrl: string;
+    openUrl: string;
+  };
+};
+
+const projects: Project[] = [
   {
     title: 'Enterprise AI Knowledge Assistant',
-    description: 'Built a RAG-based enterprise knowledge assistant using OpenAI models to deliver accurate, context-aware answers from documentation.',
+    description:
+      'Built a RAG-based enterprise knowledge assistant using OpenAI models to deliver accurate, context-aware answers from documentation.',
     tech: ['React', 'Java', 'Spring Boot', 'PostgreSQL', 'LangChain', 'OpenAI', 'RAG'],
     links: [
-      { label: 'GitHub', href: 'https://github.com/shashank1227/enterprise-ai-knowledge-assistant' }
-    ]
+      { label: 'GitHub', href: 'https://github.com/shashank1227/enterprise-ai-knowledge-assistant' },
+    ],
+    demoVideo: {
+      label: 'Watch demo',
+      embedUrl: 'https://drive.google.com/file/d/1Y0DkVD1MTQQbD_PGj3QL5BtrogR4sHUX/preview',
+      openUrl: 'https://drive.google.com/file/d/1Y0DkVD1MTQQbD_PGj3QL5BtrogR4sHUX/view?usp=drive_link',
+    },
   },
   {
     title: 'AI Documentation Copilot',
-    description: 'Developed an AI knowledge assistant using RAG to enable semantic search across technical documentation.',
-    tech: ['React', 'Java', 'Spring Boot', 'PostgresSQL', 'pgvector', 'LangChain', 'OpenAI', 'Docker']
+    description:
+      'Developed an AI knowledge assistant using RAG to enable semantic search across technical documentation.',
+    tech: ['React', 'Java', 'Spring Boot', 'PostgresSQL', 'pgvector', 'LangChain', 'OpenAI', 'Docker'],
   },
   {
     title: 'AI Code Review Assistant',
-    description: 'Created an intelligent assistant that analyzes GitHub pull requests and provides AI-assisted recommendations for code quality, maintainability and best practices.',
-    tech: ['React', 'Spring Boot', 'GitHub API', 'OpenAI', 'Docker']
+    description:
+      'Created an intelligent assistant that analyzes GitHub pull requests and provides AI-assisted recommendations for code quality, maintainability and best practices.',
+    tech: ['React', 'Spring Boot', 'GitHub API', 'OpenAI', 'Docker'],
   },
   {
     title: 'Weather App',
-    description: 'Built a minimal Next.js weather app with city search, geolocation, hourly and 7-day forecasts, weather-aware icons, and light/dark mode using Open-Meteo — no API key required.',
+    description:
+      'Built a minimal Next.js weather app with city search, geolocation, hourly and 7-day forecasts, weather-aware icons, and light/dark mode using Open-Meteo — no API key required.',
     tech: ['Next.js', 'React', 'Open-Meteo', 'Geolocation API'],
     links: [
       { label: 'Live demo', href: 'https://shashank1227.github.io/WeatherApp/' },
-      { label: 'GitHub', href: 'https://github.com/shashank1227/WeatherApp' }
-    ]
-  }
+      { label: 'GitHub', href: 'https://github.com/shashank1227/WeatherApp' },
+    ],
+  },
 ];
 
 const Projects: React.FC = () => {
+  const [activeDemo, setActiveDemo] = useState<Project | null>(null);
+
+  useEffect(() => {
+    if (!activeDemo) return;
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setActiveDemo(null);
+    };
+
+    document.addEventListener('keydown', onKeyDown);
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    return () => {
+      document.removeEventListener('keydown', onKeyDown);
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [activeDemo]);
+
   return (
     <ProjectsSection id="projects">
       <Container>
@@ -200,42 +340,85 @@ const Projects: React.FC = () => {
         </Title>
 
         <ProjectsList>
-          {projects.map((project, index) => (
-            <ProjectRow
-              key={project.title}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.08 }}
-            >
-              <div>
-                <ProjectTitle>{project.title}</ProjectTitle>
-                <ProjectDescription>{project.description}</ProjectDescription>
-                {'links' in project && project.links && project.links.length > 0 && (
-                  <ProjectLinks>
-                    {project.links.map((item) => (
-                      <ProjectLink
-                        key={item.href}
-                        href={item.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={`${item.label} for ${project.title}`}
-                      >
-                        {item.label} →
-                      </ProjectLink>
-                    ))}
-                  </ProjectLinks>
-                )}
-              </div>
-              <TechStack>
-                {project.tech.map((tech) => (
-                  <TechTag key={tech}>{tech}</TechTag>
-                ))}
-              </TechStack>
-            </ProjectRow>
-          ))}
+          {projects.map((project, index) => {
+            const hasLinks = Boolean(project.links?.length || project.demoVideo);
+
+            return (
+              <ProjectRow
+                key={project.title}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.08 }}
+              >
+                <div>
+                  <ProjectTitle>{project.title}</ProjectTitle>
+                  <ProjectDescription>{project.description}</ProjectDescription>
+                  {hasLinks && (
+                    <ProjectLinks>
+                      {project.demoVideo && (
+                        <DemoButton
+                          type="button"
+                          onClick={() => setActiveDemo(project)}
+                          aria-label={`${project.demoVideo.label} for ${project.title}`}
+                        >
+                          {project.demoVideo.label} →
+                        </DemoButton>
+                      )}
+                      {project.links?.map((item) => (
+                        <ProjectLink
+                          key={item.href}
+                          href={item.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={`${item.label} for ${project.title}`}
+                        >
+                          {item.label} →
+                        </ProjectLink>
+                      ))}
+                    </ProjectLinks>
+                  )}
+                </div>
+                <TechStack>
+                  {project.tech.map((tech) => (
+                    <TechTag key={tech}>{tech}</TechTag>
+                  ))}
+                </TechStack>
+              </ProjectRow>
+            );
+          })}
         </ProjectsList>
       </Container>
+
+      {activeDemo?.demoVideo && (
+        <ModalOverlay onClick={() => setActiveDemo(null)}>
+          <ModalContent onClick={(event) => event.stopPropagation()} role="dialog" aria-modal="true">
+            <ModalHeader>
+              <ModalTitle>{activeDemo.title} — Demo</ModalTitle>
+              <CloseButton type="button" onClick={() => setActiveDemo(null)} aria-label="Close demo">
+                ×
+              </CloseButton>
+            </ModalHeader>
+            <VideoFrame>
+              <iframe
+                src={activeDemo.demoVideo.embedUrl}
+                title={`${activeDemo.title} demo video`}
+                allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+                allowFullScreen
+              />
+            </VideoFrame>
+            <ModalFooter>
+              <ProjectLink
+                href={activeDemo.demoVideo.openUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Open in Google Drive →
+              </ProjectLink>
+            </ModalFooter>
+          </ModalContent>
+        </ModalOverlay>
+      )}
     </ProjectsSection>
   );
 };
