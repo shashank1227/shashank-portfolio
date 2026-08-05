@@ -280,8 +280,11 @@ const projects: Project[] = [
   {
     title: 'AI Documentation Copilot',
     description:
-      'Developed an AI knowledge assistant using RAG to enable semantic search across technical documentation.',
-    tech: ['React', 'Java', 'Spring Boot', 'PostgresSQL', 'pgvector', 'LangChain', 'OpenAI', 'Docker'],
+      'Built a RAG documentation chat app (DocForge) that uploads PDF/Markdown, embeds chunks with OpenAI into Postgres pgvector, and answers questions with sourced citations via LangChain4j.',
+    tech: ['React', 'Java', 'Spring Boot', 'PostgreSQL', 'pgvector', 'LangChain4j', 'OpenAI', 'Docker'],
+    links: [
+      { label: 'GitHub', href: 'https://github.com/shashank1227/ai-documentation-copilot' },
+    ],
   },
   {
     title: 'AI Code Review Assistant',
