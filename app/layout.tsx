@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   description:
     'Senior Software Engineer with 5+ years of experience building scalable React, TypeScript, Node.js, Java, Spring Boot, and AI-enabled products.',
   keywords: [
-    'Senior Software Engineer',
+    'Senior Engineer',
     'React',
     'TypeScript',
     'Node.js',
