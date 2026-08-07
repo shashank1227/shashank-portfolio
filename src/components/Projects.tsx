@@ -291,6 +291,14 @@ const projects: Project[] = [
     description:
       'Created an intelligent assistant that analyzes GitHub pull requests and provides AI-assisted recommendations for code quality, maintainability and best practices.',
     tech: ['React', 'Spring Boot', 'GitHub API', 'OpenAI', 'Docker'],
+    links: [
+      { label: 'GitHub', href: 'https://github.com/shashank1227/code-review-assistant' },
+    ],
+    demoVideo: {
+      label: 'Watch demo',
+      embedUrl: 'https://drive.google.com/file/d/10zdJUWiqFcJ0794jlnadIdWzsE32IWom/preview',
+      openUrl: 'https://drive.google.com/file/d/10zdJUWiqFcJ0794jlnadIdWzsE32IWom/view?usp=sharing',
+    },
   },
   {
     title: 'Weather App',
