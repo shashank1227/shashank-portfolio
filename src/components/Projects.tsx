@@ -285,6 +285,11 @@ const projects: Project[] = [
     links: [
       { label: 'GitHub', href: 'https://github.com/shashank1227/ai-documentation-copilot' },
     ],
+    demoVideo: {
+      label: 'Watch demo',
+      embedUrl: 'https://drive.google.com/file/d/1Sf7vJGD6CWrVUZJKYYeRzDT27OAK112c/preview',
+      openUrl: 'https://drive.google.com/file/d/1Sf7vJGD6CWrVUZJKYYeRzDT27OAK112c/view?usp=drive_link',
+    },
   },
   {
     title: 'AI Code Review Assistant',
