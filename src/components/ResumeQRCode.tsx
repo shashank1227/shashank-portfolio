@@ -5,7 +5,7 @@ import styled, { useTheme } from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import { QRCodeSVG } from 'qrcode.react';
 import { FaDownload } from 'react-icons/fa';
-import { logResumeDownload } from '@/utils/analytics';
+import { logQrInteraction, logResumeDownload } from '@/utils/analytics';
 import { withBase } from '@/utils/paths';
 
 const isMobile = () => {
@@ -187,6 +187,12 @@ const ResumeQRCode: React.FC = () => {
     handleDismiss();
   }, [handleDismiss]);
 
+  const handleQrClick = useCallback(() => {
+    // QR click dismisses the widget; actual downloads happen via phone scan / mobile CTA
+    logQrInteraction('widget_click');
+    handleDismiss();
+  }, [handleDismiss]);
+
   const animationProps = {
     initial: { opacity: 0, y: 16 },
     animate: { opacity: 1, y: 0 },
@@ -248,7 +254,7 @@ const ResumeQRCode: React.FC = () => {
                 height: 32,
                 width: 32,
               }}
-              onClick={() => handleDownload('qr-scan')}
+              onClick={handleQrClick}
               style={{ cursor: 'pointer' }}
             />
           </QRCodeWrapper>

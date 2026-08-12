@@ -4,6 +4,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import { logOutboundClick } from '@/utils/analytics';
 
 const FooterSection = styled.footer`
   background: transparent;
@@ -63,6 +64,9 @@ const Footer: React.FC = () => {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Visit Shashank's LinkedIn profile"
+            onClick={() =>
+              logOutboundClick('https://linkedin.com/in/shashesi/', 'linkedin', 'footer')
+            }
             whileHover={{ y: -2 }}
           >
             <FaLinkedin aria-label="LinkedIn icon" />
@@ -72,6 +76,9 @@ const Footer: React.FC = () => {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Visit Shashank's GitHub profile"
+            onClick={() =>
+              logOutboundClick('https://github.com/shashank1227', 'github', 'footer')
+            }
             whileHover={{ y: -2 }}
           >
             <FaGithub aria-label="GitHub icon" />

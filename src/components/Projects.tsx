@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
+import { logDemoOpen, logOutboundClick } from '@/utils/analytics';
 
 const ProjectsSection = styled.section`
   background: transparent;
@@ -393,7 +394,10 @@ const Projects: React.FC = () => {
                       {project.demoVideo && (
                         <DemoButton
                           type="button"
-                          onClick={() => setActiveDemo(project)}
+                          onClick={() => {
+                            logDemoOpen(project.title);
+                            setActiveDemo(project);
+                          }}
                           aria-label={`${project.demoVideo.label} for ${project.title}`}
                         >
                           {project.demoVideo.label} →
@@ -406,6 +410,9 @@ const Projects: React.FC = () => {
                           target="_blank"
                           rel="noopener noreferrer"
                           aria-label={`${item.label} for ${project.title}`}
+                          onClick={() =>
+                            logOutboundClick(item.href, `${project.title} — ${item.label}`, 'projects')
+                          }
                         >
                           {item.label} →
                         </ProjectLink>
@@ -446,6 +453,13 @@ const Projects: React.FC = () => {
                 href={activeDemo.demoVideo.openUrl}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() =>
+                  logOutboundClick(
+                    activeDemo.demoVideo!.openUrl,
+                    `${activeDemo.title} — Open in Google Drive`,
+                    'projects_demo'
+                  )
+                }
               >
                 Open in Google Drive →
               </ProjectLink>

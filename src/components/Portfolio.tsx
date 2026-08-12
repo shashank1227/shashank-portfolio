@@ -20,16 +20,23 @@ const MainContent = styled.main`
 
 const Portfolio: React.FC = () => {
   useEffect(() => {
-    if (typeof window !== 'undefined' && window.location.hostname !== 'localhost') {
-      import('@/utils/analytics')
-        .then(({ initGA, logPageView }) => {
-          initGA('G-59JRJJSMM1');
-          logPageView();
-        })
-        .catch(() => {
-          // Analytics deferred, no blocking failure needed
-        });
-    }
+    let teardownEngagement: (() => void) | undefined;
+
+    import('@/utils/analytics')
+      .then(({ shouldTrack, initGA, logPageView, setupEngagementTracking, GA_MEASUREMENT_ID }) => {
+        if (!shouldTrack()) return;
+
+        initGA(GA_MEASUREMENT_ID);
+        logPageView();
+        teardownEngagement = setupEngagementTracking();
+      })
+      .catch(() => {
+        // Analytics deferred, no blocking failure needed
+      });
+
+    return () => {
+      teardownEngagement?.();
+    };
   }, []);
 
   return (

@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 import { FaDownload } from 'react-icons/fa';
 import TypedText from './TypedText';
 import { withBase } from '@/utils/paths';
+import { logCtaClick, logResumeDownload } from '@/utils/analytics';
 
 const float = keyframes`
   0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
@@ -239,6 +240,7 @@ const ButtonContainer = styled.div`
 
 const Hero: React.FC = () => {
   const handleProjectsClick = () => {
+    logCtaClick('explore_projects', 'hero');
     const projectsSection = document.getElementById('projects');
     if (projectsSection) {
       projectsSection.scrollIntoView({ behavior: 'smooth' });
@@ -322,6 +324,7 @@ const Hero: React.FC = () => {
             href={withBase('/ShashankResume.pdf')}
             download="Shashank-Resume.pdf"
             aria-label="Download Shashank's Resume"
+            onClick={() => logResumeDownload('hero')}
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, delay: 0.55 }}
