@@ -17,8 +17,7 @@ const QRCodeContainer = styled(motion.div)`
   bottom: 20px;
   right: 20px;
   z-index: 100;
-  background: ${({ theme }) =>
-    theme.mode === 'dark' ? 'rgba(14, 13, 10, 0.94)' : 'rgba(243, 226, 138, 0.97)'};
+  background: var(--color-background);
   border-radius: ${({ theme }) => theme.borderRadius.sm};
   padding: 14px;
   border: 1px solid ${({ theme }) => theme.colors.border};
@@ -246,7 +245,7 @@ const ResumeQRCode: React.FC = () => {
               size={110}
               level="H"
               bgColor="transparent"
-              fgColor={theme.colors.text}
+              fgColor={theme.mode === 'dark' ? '#fff6c8' : '#0a0906'}
               imageSettings={{
                 src: profilePicture,
                 excavate: true,

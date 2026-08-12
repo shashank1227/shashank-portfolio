@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import { Bricolage_Grotesque, DM_Sans } from 'next/font/google';
 import Providers from '@/components/Providers';
+import { themeColorBootstrapCss } from '@/styles/theme';
 
 const bricolage = Bricolage_Grotesque({
   subsets: ['latin'],
@@ -90,16 +91,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <style
           dangerouslySetInnerHTML={{
             __html: `
+              ${themeColorBootstrapCss}
               html,body{margin:0;min-height:100%}
               body{
                 font-family:var(--font-body),'DM Sans',sans-serif;
-                background-color:#0e0d0a;
-                color:#fff6c8;
+                background-color:var(--color-background);
+                background-image:var(--body-gradient);
+                color:var(--color-text);
                 -webkit-font-smoothing:antialiased;
-              }
-              html[data-theme="light"] body{
-                background-color:#f3e28a;
-                color:#0a0906;
               }
             `,
           }}

@@ -44,10 +44,10 @@ const OrbPrimary = styled(Orb)`
   right: -6%;
   background: radial-gradient(
     circle,
-    ${({ theme }) => theme.colors.accent} 0%,
+    var(--color-accent) 0%,
     transparent 70%
   );
-  opacity: ${({ theme }) => (theme.mode === 'dark' ? 0.22 : 0.4)};
+  opacity: var(--orb-primary-opacity);
   animation: ${float} 10s ease-in-out infinite;
   will-change: transform;
 `;
@@ -59,8 +59,7 @@ const OrbSecondary = styled(Orb)`
   left: -8%;
   background: radial-gradient(
     circle,
-    ${({ theme }) =>
-      theme.mode === 'dark' ? 'rgba(255, 217, 61, 0.35)' : 'rgba(255, 255, 255, 0.55)'} 0%,
+    var(--orb-secondary-fill) 0%,
     transparent 70%
   );
   animation: ${drift} 12s ease-in-out infinite;
