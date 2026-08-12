@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Typed from 'typed.js';
 
 interface TypedTextProps {
@@ -23,36 +23,44 @@ const TypedText: React.FC<TypedTextProps> = ({
   className = ''
 }) => {
   const el = useRef<HTMLSpanElement>(null);
-  const typed = useRef<Typed | null>(null);
+  const [phase, setPhase] = useState<'static' | 'typed'>('static');
   const firstString = strings[0] ?? '';
+  // Stable dep so parent re-renders with a new array literal don't remount Typed
+  const stringsKey = strings.join('\0');
 
+  // Keep the first string visible for LCP, then hand the node to Typed.js
   useEffect(() => {
-    if (!el.current || strings.length === 0) return;
+    if (strings.length === 0) return;
 
-    // Defer typing until after first paint so LCP isn't blocked by typed.js
     const timer = window.setTimeout(() => {
-      if (!el.current) return;
-
-      typed.current = new Typed(el.current, {
-        strings,
-        typeSpeed,
-        backSpeed,
-        backDelay,
-        loop,
-        smartBackspace,
-      });
+      setPhase('typed');
     }, 900);
 
     return () => {
       window.clearTimeout(timer);
-      typed.current?.destroy();
-      typed.current = null;
     };
-  }, [strings, typeSpeed, backSpeed, backDelay, loop, smartBackspace]);
+  }, [strings.length]);
+
+  useEffect(() => {
+    if (phase !== 'typed' || !el.current || !stringsKey) return;
+
+    const instance = new Typed(el.current, {
+      strings: stringsKey.split('\0'),
+      typeSpeed,
+      backSpeed,
+      backDelay,
+      loop,
+      smartBackspace,
+    });
+
+    return () => {
+      instance.destroy();
+    };
+  }, [phase, stringsKey, typeSpeed, backSpeed, backDelay, loop, smartBackspace]);
 
   return (
-    <span ref={el} className={className}>
-      {firstString}
+    <span ref={el} className={className} suppressHydrationWarning>
+      {phase === 'static' ? firstString : null}
     </span>
   );
 };
