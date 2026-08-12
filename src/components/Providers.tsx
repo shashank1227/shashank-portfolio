@@ -5,6 +5,7 @@ import { ThemeProvider } from 'styled-components';
 import styled from 'styled-components';
 import GlobalStyle from '@/styles/GlobalStyle';
 import ThemeToggle from '@/components/ThemeToggle';
+import StyledComponentsRegistry from '@/components/StyledComponentsRegistry';
 import { useThemeMode } from '@/hooks/useThemeMode';
 
 const AppContainer = styled.div`
@@ -23,13 +24,15 @@ const Providers: React.FC<ProvidersProps> = ({ children }) => {
   const { mode, theme, toggleMode } = useThemeMode();
 
   return (
-    <ThemeProvider theme={theme}>
-      <GlobalStyle />
-      <AppContainer>
-        <ThemeToggle mode={mode} onToggle={toggleMode} />
-        {children}
-      </AppContainer>
-    </ThemeProvider>
+    <StyledComponentsRegistry>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <AppContainer>
+          <ThemeToggle mode={mode} onToggle={toggleMode} />
+          {children}
+        </AppContainer>
+      </ThemeProvider>
+    </StyledComponentsRegistry>
   );
 };
 

@@ -25,7 +25,6 @@ const QRCodeContainer = styled(motion.div)`
   display: flex;
   flex-direction: column;
   align-items: center;
-  backdrop-filter: blur(8px);
   will-change: transform, opacity;
   contain: layout style;
 

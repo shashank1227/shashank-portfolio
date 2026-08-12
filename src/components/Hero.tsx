@@ -33,7 +33,8 @@ const Orb = styled.div`
   border-radius: 50%;
   pointer-events: none;
   z-index: 0;
-  filter: blur(2px);
+  /* Soft edge without live blur filter (non-composited / expensive) */
+  opacity: 0.9;
 `;
 
 const OrbPrimary = styled(Orb)`
@@ -41,9 +42,14 @@ const OrbPrimary = styled(Orb)`
   height: min(48vw, 420px);
   top: -8%;
   right: -6%;
-  background: ${({ theme }) => theme.colors.accent};
-  opacity: ${({ theme }) => (theme.mode === 'dark' ? 0.18 : 0.35)};
+  background: radial-gradient(
+    circle,
+    ${({ theme }) => theme.colors.accent} 0%,
+    transparent 70%
+  );
+  opacity: ${({ theme }) => (theme.mode === 'dark' ? 0.22 : 0.4)};
   animation: ${float} 10s ease-in-out infinite;
+  will-change: transform;
 `;
 
 const OrbSecondary = styled(Orb)`
@@ -51,9 +57,14 @@ const OrbSecondary = styled(Orb)`
   height: min(34vw, 280px);
   bottom: 8%;
   left: -8%;
-  background: ${({ theme }) =>
-    theme.mode === 'dark' ? 'rgba(255, 217, 61, 0.2)' : 'rgba(255, 255, 255, 0.4)'};
+  background: radial-gradient(
+    circle,
+    ${({ theme }) =>
+      theme.mode === 'dark' ? 'rgba(255, 217, 61, 0.35)' : 'rgba(255, 255, 255, 0.55)'} 0%,
+    transparent 70%
+  );
   animation: ${drift} 12s ease-in-out infinite;
+  will-change: transform;
 `;
 
 const AccentSlash = styled(motion.div)`
@@ -85,7 +96,7 @@ const HeroContent = styled.div`
   }
 `;
 
-const ProfileRow = styled(motion.div)`
+const ProfileRow = styled.div`
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -133,7 +144,7 @@ const Availability = styled.span`
   }
 `;
 
-const Title = styled(motion.h1)`
+const Title = styled.h1`
   font-size: clamp(3rem, 8vw, 6rem);
   font-weight: 800;
   line-height: 0.95;
@@ -148,7 +159,7 @@ const TitleAccent = styled.span`
   color: ${({ theme }) => theme.colors.accent};
 `;
 
-const Subtitle = styled(motion.h2)`
+const Subtitle = styled.h2`
   font-family: ${({ theme }) => theme.fonts.primary};
   font-size: clamp(1.1rem, 2.4vw, 1.45rem);
   font-weight: 500;
@@ -161,7 +172,7 @@ const Subtitle = styled(motion.h2)`
   overflow: visible;
 `;
 
-const HeroCopy = styled(motion.p)`
+const HeroCopy = styled.p`
   max-width: 36rem;
   font-size: 1.08rem;
   line-height: 1.75;
@@ -179,7 +190,7 @@ const CTAButton = styled(motion.button)`
   font-size: 0.95rem;
   letter-spacing: 0.02em;
   cursor: pointer;
-  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 
   &:hover, &:focus-visible {
     background: ${({ theme }) => theme.colors.text};
@@ -259,35 +270,24 @@ const Hero: React.FC = () => {
         style={{ originY: 0 }}
       />
       <HeroContent>
-        <ProfileRow
-          initial={{ opacity: 0, y: 14 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
+        <ProfileRow>
           <ProfileImage
             src={withBase('/profile.jpg')}
             alt="Shashank Shekhar Singh"
             width={88}
             height={88}
             loading="eager"
-            decoding="sync"
+            decoding="async"
+            fetchPriority="high"
           />
           <Availability>Open to roles</Availability>
         </ProfileRow>
-        <Title
-          initial={{ opacity: 0, y: 22 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.65, delay: 0.1 }}
-        >
+        <Title>
           Shashank{' '}
           <TitleAccent>Shekhar</TitleAccent>{' '}
           Singh
         </Title>
-        <Subtitle
-          initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.25 }}
-        >
+        <Subtitle>
           <TypedText
             strings={[
               'Senior Software Engineer',
@@ -301,20 +301,13 @@ const Hero: React.FC = () => {
             smartBackspace
           />
         </Subtitle>
-        <HeroCopy
-          initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.35 }}
-        >
+        <HeroCopy>
           I build high-scale web applications, lead frontend architecture, and create production-oriented AI experiences with React, Spring Boot, OpenAI, LangChain, and RAG.
         </HeroCopy>
         <ButtonContainer>
           <CTAButton
             onClick={handleProjectsClick}
             aria-label="Explore Shashank's projects"
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, delay: 0.45 }}
             whileHover={{ y: -3 }}
             whileTap={{ y: 0 }}
           >
@@ -325,9 +318,6 @@ const Hero: React.FC = () => {
             download="Shashank-Resume.pdf"
             aria-label="Download Shashank's Resume"
             onClick={() => logResumeDownload('hero')}
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, delay: 0.55 }}
             whileHover={{ y: -3 }}
             whileTap={{ y: 0 }}
           >

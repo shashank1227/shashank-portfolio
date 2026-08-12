@@ -205,6 +205,8 @@ const Testimonials: React.FC = () => {
             <TestimonialImage
               src={withBase(testimonial.image)}
               alt={testimonial.name}
+              width={56}
+              height={56}
               loading="lazy"
               decoding="async"
             />

@@ -17,12 +17,17 @@ const getPreferredMode = (): ThemeMode => {
   return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
 };
 
-export const useThemeMode = () => {
-  const [mode, setMode] = useState<ThemeMode>('dark');
+const getInitialMode = (): ThemeMode => {
+  if (typeof window === 'undefined') return 'dark';
 
-  useEffect(() => {
-    setMode(getPreferredMode());
-  }, []);
+  const attr = document.documentElement.getAttribute('data-theme');
+  if (attr === 'light' || attr === 'dark') return attr;
+
+  return getPreferredMode();
+};
+
+export const useThemeMode = () => {
+  const [mode, setMode] = useState<ThemeMode>(getInitialMode);
 
   useEffect(() => {
     window.localStorage.setItem(STORAGE_KEY, mode);

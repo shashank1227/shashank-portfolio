@@ -27,7 +27,7 @@ const GlobalStyle = createGlobalStyle`
       radial-gradient(ellipse 60% 50% at 0% 100%, rgba(92, 66, 0, 0.1), transparent 55%),
       linear-gradient(160deg, #f3e28a 0%, #edd66f 45%, #f6e79a 100%)
     `};
-    background-attachment: fixed;
+    background-attachment: scroll;
     color: ${({ theme }) => theme.colors.text};
     line-height: 1.65;
     overflow-x: hidden;
@@ -35,6 +35,10 @@ const GlobalStyle = createGlobalStyle`
     letter-spacing: 0.01em;
     -webkit-font-smoothing: antialiased;
     transition: background-color 0.25s ease, color 0.25s ease;
+
+    @media (min-width: 769px) {
+      background-attachment: fixed;
+    }
   }
 
   body::before {

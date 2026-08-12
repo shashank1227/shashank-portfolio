@@ -24,25 +24,37 @@ const TypedText: React.FC<TypedTextProps> = ({
 }) => {
   const el = useRef<HTMLSpanElement>(null);
   const typed = useRef<Typed | null>(null);
+  const firstString = strings[0] ?? '';
 
   useEffect(() => {
-    if (el.current) {
+    if (!el.current || strings.length === 0) return;
+
+    // Defer typing until after first paint so LCP isn't blocked by typed.js
+    const timer = window.setTimeout(() => {
+      if (!el.current) return;
+
       typed.current = new Typed(el.current, {
         strings,
         typeSpeed,
         backSpeed,
         backDelay,
         loop,
-        smartBackspace
+        smartBackspace,
       });
-    }
+    }, 900);
 
     return () => {
+      window.clearTimeout(timer);
       typed.current?.destroy();
+      typed.current = null;
     };
   }, [strings, typeSpeed, backSpeed, backDelay, loop, smartBackspace]);
 
-  return <span ref={el} className={className} />;
+  return (
+    <span ref={el} className={className}>
+      {firstString}
+    </span>
+  );
 };
 
-export default TypedText; 
+export default TypedText;

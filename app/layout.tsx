@@ -81,14 +81,38 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${bricolage.variable} ${dmSans.variable}`} suppressHydrationWarning>
       <head>
+        <link
+          rel="preload"
+          as="image"
+          href={asset('/profile.jpg')}
+          fetchPriority="high"
+        />
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
+              html,body{margin:0;min-height:100%}
+              body{
+                font-family:var(--font-body),'DM Sans',sans-serif;
+                background-color:#0e0d0a;
+                color:#fff6c8;
+                -webkit-font-smoothing:antialiased;
+              }
+              html[data-theme="light"] body{
+                background-color:#f3e28a;
+                color:#0a0906;
+              }
+            `,
+          }}
+        />
         <script
           dangerouslySetInnerHTML={{
             __html: `
               try {
                 var theme = localStorage.getItem('portfolio-theme');
-                if (theme === 'light' || theme === 'dark') {
-                  document.documentElement.setAttribute('data-theme', theme);
+                if (theme !== 'light' && theme !== 'dark') {
+                  theme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
                 }
+                document.documentElement.setAttribute('data-theme', theme);
               } catch (e) {}
             `,
           }}

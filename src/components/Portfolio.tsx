@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect } from 'react';
+import dynamic from 'next/dynamic';
 import styled from 'styled-components';
 import Hero from '@/components/Hero';
 import About from '@/components/About';
@@ -10,7 +11,10 @@ import Testimonials from '@/components/Testimonials';
 import Certifications from '@/components/Certifications';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
-import ResumeQRCode from '@/components/ResumeQRCode';
+
+const ResumeQRCode = dynamic(() => import('@/components/ResumeQRCode'), {
+  ssr: false,
+});
 
 const MainContent = styled.main`
   display: flex;
