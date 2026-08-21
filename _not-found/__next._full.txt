@@ -1,0 +1,90 @@
+1:"$Sreact.fragment"
+8:I[68027,["/shashank-portfolio/_next/static/chunks/2buzt4hbxj-pt.js","/shashank-portfolio/_next/static/chunks/01yhcfo32tifg.js","/shashank-portfolio/_next/static/chunks/158myu8e_yme3.js"],"default",1]
+:HL["/shashank-portfolio/_next/static/chunks/40i8mmjr4vli6.css","style"]
+:HL["/shashank-portfolio/profile.jpg","image",{"fetchPriority":"high"}]
+2:T932,
+              
+:root,html[data-theme="dark"]{
+  --color-background:#0e0d0a;
+  --color-surface:#17150f;
+  --color-text:#fff6c8;
+  --color-muted:#a39a78;
+  --color-primary:#fff6c8;
+  --color-secondary:#e8d9a0;
+  --color-accent:#ffd93d;
+  --color-accent-soft:rgba(255,217,61,0.14);
+  --color-card:#17150f;
+  --color-card-darker:#0e0d0a;
+  --color-border:rgba(255,246,200,0.12);
+  --color-gradient:#ffd93d;
+  --color-selection-bg:rgba(255,217,61,0.35);
+  --color-selection-text:#0e0d0a;
+  --color-overlay:rgba(8,7,5,0.88);
+  --color-hover-surface:rgba(255,217,61,0.06);
+  --color-on-accent:#0e0d0a;
+  --body-gradient:
+    radial-gradient(ellipse 70% 55% at 85% 10%, rgba(255,217,61,0.16), transparent 55%),
+    radial-gradient(ellipse 55% 45% at 10% 80%, rgba(255,217,61,0.07), transparent 50%),
+    linear-gradient(165deg, #0e0d0a 0%, #15130c 45%, #0e0d0a 100%);
+  --grid-opacity:0.28;
+  --noise-opacity:0.3;
+  --noise-blend:overlay;
+  --orb-primary-opacity:0.22;
+  --orb-secondary-fill:rgba(255,217,61,0.35);
+}
+html[data-theme="light"]{
+  --color-background:#f3e28a;
+  --color-surface:#fff4b8;
+  --color-text:#0a0906;
+  --color-muted:#3a3424;
+  --color-primary:#0a0906;
+  --color-secondary:#16130c;
+  --color-accent:#5c4200;
+  --color-accent-soft:rgba(92,66,0,0.12);
+  --color-card:#fff4b8;
+  --color-card-darker:#e8d06a;
+  --color-border:rgba(10,9,6,0.22);
+  --color-gradient:#5c4200;
+  --color-selection-bg:rgba(92,66,0,0.28);
+  --color-selection-text:#fff8d6;
+  --color-overlay:rgba(10,9,6,0.72);
+  --color-hover-surface:rgba(10,9,6,0.06);
+  --color-on-accent:#fff8d6;
+  --body-gradient:
+    radial-gradient(ellipse 75% 55% at 90% 0%, rgba(255,255,255,0.35), transparent 50%),
+    radial-gradient(ellipse 60% 50% at 0% 100%, rgba(92,66,0,0.1), transparent 55%),
+    linear-gradient(160deg, #f3e28a 0%, #edd66f 45%, #f6e79a 100%);
+  --grid-opacity:0.2;
+  --noise-opacity:0.15;
+  --noise-blend:multiply;
+  --orb-primary-opacity:0.4;
+  --orb-secondary-fill:rgba(255,255,255,0.55);
+}
+
+              html,body{margin:0;min-height:100%}
+              body{
+                font-family:var(--font-body),'DM Sans',sans-serif;
+                background-color:var(--color-background);
+                background-image:var(--body-gradient);
+                color:var(--color-text);
+                -webkit-font-smoothing:antialiased;
+              }
+            0:{"P":null,"c":["","_not-found",""],"q":"","i":false,"f":[[["",{"children":["/_not-found",{"children":["__PAGE__",{}]}]},"$undefined","$undefined",16],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/shashank-portfolio/_next/static/chunks/40i8mmjr4vli6.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/shashank-portfolio/_next/static/chunks/2buzt4hbxj-pt.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/shashank-portfolio/_next/static/chunks/01yhcfo32tifg.js","async":true,"nonce":"$undefined"}],["$","script","script-2",{"src":"/shashank-portfolio/_next/static/chunks/158myu8e_yme3.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"en","className":"bricolage_grotesque_b6a0b7f1-module__8nF8uW__variable dm_sans_fd62f040-module__0jgVUW__variable","suppressHydrationWarning":true,"children":[["$","head",null,{"children":[["$","link",null,{"rel":"preload","as":"image","href":"/shashank-portfolio/profile.jpg","fetchPriority":"high"}],["$","style",null,{"dangerouslySetInnerHTML":{"__html":"$2"}}],["$","script",null,{"dangerouslySetInnerHTML":{"__html":"\n              try {\n                var theme = localStorage.getItem('portfolio-theme');\n                if (theme !== 'light' && theme !== 'dark') {\n                  theme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';\n                }\n                document.documentElement.setAttribute('data-theme', theme);\n              } catch (e) {}\n            "}}]]}],"$L3"]}]]}],{"children":["$L4",{"children":["$L5",{},null,false,null]},null,false,"$@6"]},null,false,null],"$L7",false]],"m":"$undefined","G":["$8",["$L9"]],"S":true,"h":null,"s":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"-gqRUZoPF1X57sFHtWNAA"}
+a:I[30824,["/shashank-portfolio/_next/static/chunks/2buzt4hbxj-pt.js","/shashank-portfolio/_next/static/chunks/01yhcfo32tifg.js","/shashank-portfolio/_next/static/chunks/158myu8e_yme3.js"],"default"]
+b:I[39756,["/shashank-portfolio/_next/static/chunks/2buzt4hbxj-pt.js","/shashank-portfolio/_next/static/chunks/01yhcfo32tifg.js","/shashank-portfolio/_next/static/chunks/158myu8e_yme3.js"],"default"]
+c:I[37457,["/shashank-portfolio/_next/static/chunks/2buzt4hbxj-pt.js","/shashank-portfolio/_next/static/chunks/01yhcfo32tifg.js","/shashank-portfolio/_next/static/chunks/158myu8e_yme3.js"],"default"]
+d:I[97367,["/shashank-portfolio/_next/static/chunks/2buzt4hbxj-pt.js","/shashank-portfolio/_next/static/chunks/01yhcfo32tifg.js","/shashank-portfolio/_next/static/chunks/158myu8e_yme3.js"],"OutletBoundary"]
+e:"$Sreact.suspense"
+11:I[97367,["/shashank-portfolio/_next/static/chunks/2buzt4hbxj-pt.js","/shashank-portfolio/_next/static/chunks/01yhcfo32tifg.js","/shashank-portfolio/_next/static/chunks/158myu8e_yme3.js"],"ViewportBoundary"]
+13:I[97367,["/shashank-portfolio/_next/static/chunks/2buzt4hbxj-pt.js","/shashank-portfolio/_next/static/chunks/01yhcfo32tifg.js","/shashank-portfolio/_next/static/chunks/158myu8e_yme3.js"],"MetadataBoundary"]
+3:["$","body",null,{"children":["$","$La",null,{"children":["$","$Lb",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$Lc",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}]}]
+4:["$","$1","c",{"children":[null,["$","$Lb",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$Lc",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}]
+5:["$","$1","c",{"children":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":"$3:props:children:props:children:props:notFound:0:1:props:style","children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":"$3:props:children:props:children:props:notFound:0:1:props:children:props:children:1:props:style","children":404}],["$","div",null,{"style":"$3:props:children:props:children:props:notFound:0:1:props:children:props:children:2:props:style","children":["$","h2",null,{"style":"$3:props:children:props:children:props:notFound:0:1:props:children:props:children:2:props:children:props:style","children":"This page could not be found."}]}]]}]}]],null,["$","$Ld",null,{"children":["$","$e",null,{"name":"Next.MetadataOutlet","children":"$@f"}]}]]}]
+10:[]
+6:"$W10"
+7:["$","$1","h",{"children":[["$","meta",null,{"name":"robots","content":"noindex"}],["$","$L11",null,{"children":"$L12"}],["$","div",null,{"hidden":true,"children":["$","$L13",null,{"children":["$","$e",null,{"name":"Next.Metadata","children":"$L14"}]}]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}]
+9:["$","link","0",{"rel":"stylesheet","href":"/shashank-portfolio/_next/static/chunks/40i8mmjr4vli6.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
+12:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}],["$","meta","2",{"name":"theme-color","content":"#f3e28a","media":"(prefers-color-scheme: light)"}],["$","meta","3",{"name":"theme-color","content":"#0e0d0a","media":"(prefers-color-scheme: dark)"}]]
+15:I[27201,["/shashank-portfolio/_next/static/chunks/2buzt4hbxj-pt.js","/shashank-portfolio/_next/static/chunks/01yhcfo32tifg.js","/shashank-portfolio/_next/static/chunks/158myu8e_yme3.js"],"IconMark"]
+f:null
+14:[["$","title","0",{"children":"Shashank Shekhar Singh | Senior Software Engineer"}],["$","meta","1",{"name":"description","content":"Senior Software Engineer with 5+ years of experience building scalable React, TypeScript, Node.js, Java, Spring Boot, and AI-enabled products."}],["$","meta","2",{"name":"author","content":"Shashank Shekhar Singh"}],["$","link","3",{"rel":"manifest","href":"/shashank-portfolio/manifest.json","crossOrigin":"$undefined"}],["$","meta","4",{"name":"keywords","content":"Senior Software Engineer,React,TypeScript,Node.js,Java,Spring Boot,OpenAI,LangChain,RAG,Portfolio"}],["$","meta","5",{"property":"og:title","content":"Shashank Shekhar Singh | Senior Software Engineer"}],["$","meta","6",{"property":"og:description","content":"Senior Software Engineer building scalable frontend systems, enterprise platforms, and AI-enabled products with React, TypeScript, Java, Spring Boot, and LLM technologies."}],["$","meta","7",{"property":"og:url","content":"https://shashank1227.github.io/shashank-portfolio/"}],["$","meta","8",{"property":"og:image","content":"https://shashank1227.github.io/shashank-portfolio/meta-image-v4.png"}],["$","meta","9",{"property":"og:image:type","content":"image/png"}],["$","meta","10",{"property":"og:image:width","content":"1200"}],["$","meta","11",{"property":"og:image:height","content":"630"}],["$","meta","12",{"property":"og:type","content":"website"}],["$","meta","13",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","14",{"name":"twitter:title","content":"Shashank Shekhar Singh | Senior Software Engineer"}],["$","meta","15",{"name":"twitter:description","content":"React, TypeScript, Node.js, Java, Spring Boot, and AI-powered product development."}],["$","meta","16",{"name":"twitter:image","content":"https://shashank1227.github.io/shashank-portfolio/meta-image-v4.png"}],["$","link","17",{"rel":"icon","href":"/shashank-portfolio/favicon.ico","sizes":"any"}],["$","link","18",{"rel":"icon","href":"/shashank-portfolio/favicon-96x96.png","sizes":"96x96","type":"image/png"}],["$","link","19",{"rel":"icon","href":"/shashank-portfolio/favicon.svg","type":"image/svg+xml"}],["$","link","20",{"rel":"apple-touch-icon","href":"/shashank-portfolio/apple-touch-icon.png","sizes":"180x180"}],["$","$L15","21",{}]]

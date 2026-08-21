@@ -1,0 +1,26 @@
+{
+  "short_name": "Shashank",
+  "name": "Shashank Shekhar Singh — Portfolio",
+  "icons": [
+    {
+      "src": "/shashank-portfolio/favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/shashank-portfolio/web-app-manifest-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/shashank-portfolio/web-app-manifest-512x512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/shashank-portfolio/",
+  "scope": "/shashank-portfolio/",
+  "display": "standalone",
+  "theme_color": "#f3e28a",
+  "background_color": "#f3e28a"
+}
